@@ -1,15 +1,20 @@
 import React from 'react';
-import Header from './components/Header';
-import Sidebar from './components/Sidebar';
-import Footer from './components/Footer';
 
-const MainLayout: React.FC<React.PropsWithChildren<{}>> = ({ children }) => {
+import Sidebar from './components/Sidebar/Sidebar';
+
+interface MainLayoutProps {
+	children: React.ReactNode;
+	logout: () => void;
+}
+
+const MainLayout: React.FC<MainLayoutProps> = ({ children, logout }) => {
 	return (
-		<div className='App'>
-			<Header />
-			<Sidebar />
+		<div className='MainLayout'>
+			<Sidebar
+				logout={logout}
+				className='Sidebar'
+			/>
 			<div className='MainContent'>{children}</div>
-			<Footer />
 		</div>
 	);
 };

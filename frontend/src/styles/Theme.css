@@ -1,0 +1,265 @@
+:root {
+	--color1: #007feb;
+	--color2: #2699fb;
+	--color3: #7fc4fd;
+	--color4: #bce0fd;
+	--color5: #f1f9ff;
+	--color6: #ffffff;
+}
+
+#button {
+	cursor: pointer;
+	outline: none;
+	border: none;
+	border-radius: 1000px;
+	padding: 0rem 1rem;
+	font-size: 0.8rem;
+	color: var(--color6);
+	background-color: var(--color2);
+}
+
+.button {
+	cursor: pointer;
+	outline: none;
+	border: none;
+	border-radius: 1000px;
+	padding: 0rem 1rem;
+	font-size: 0.8rem;
+	color: var(--color6);
+	background-color: var(--color2);
+}
+
+#button:hover {
+	background-color: var(--color1);
+}
+
+.button:hover {
+	background-color: var(--color1);
+}
+
+#link {
+	color: var(--color2);
+	text-decoration: none;
+}
+
+#link:hover {
+	text-decoration: underline;
+}
+
+/* LINKS */
+
+.links-input {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	border: 1px solid #ccc;
+	padding: 5px;
+	border-radius: 5px;
+}
+
+.link-capsule {
+	display: flex;
+	align-items: center;
+	background-color: #f1f1f1;
+	border: 1px solid #ccc;
+	border-radius: 15px;
+	padding: 5px 10px;
+	margin: 5px;
+}
+
+.link-capsule button {
+	background: none;
+	border: none;
+	font-size: 1rem;
+	margin-left: 5px;
+	cursor: pointer;
+	color: #888;
+}
+
+.link-capsule button:hover {
+	color: #333;
+}
+
+/*  */
+
+#input {
+	outline: none;
+	border: none;
+	padding-left: 1rem;
+	padding-right: 1rem;
+	font-size: 1.5rem;
+	color: gray;
+	background: none;
+	border-bottom: 1px solid gray;
+}
+
+.file-input {
+	cursor: pointer;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 10rem;
+	background-color: var(--color5);
+	border: 2px dashed gray;
+}
+
+.file-input:hover {
+	border-color: var(--color2);
+}
+
+#textarea {
+	outline: none;
+	padding-left: 1rem;
+	padding-right: 1rem;
+	font-size: 1.5rem;
+	color: gray;
+	background: none;
+	border: 1px solid gray;
+	resize: none;
+}
+
+#textarea:focus {
+	border: 2px solid var(--color2);
+}
+#input:focus {
+	border-bottom: 2px solid var(--color2);
+}
+
+#input-group {
+	display: flex;
+	flex-direction: column;
+}
+
+#button-group {
+	align-self: flex-end;
+	margin-top: 1rem;
+}
+
+#link-group {
+	margin-top: auto;
+}
+
+#message-box {
+	width: 100%;
+	height: 3rem;
+}
+
+#heading1 {
+	padding: 1rem 0;
+}
+
+#label {
+	color: gray;
+	font-size: 0.8rem;
+}
+
+#medium-form {
+	background-color: var(--color6);
+	height: 100%;
+	width: 500px;
+	padding: 3rem;
+	border-radius: 4px 4px 0 0;
+	display: flex;
+	flex-direction: column;
+	overflow-y: scroll;
+}
+#large-form {
+	background-color: var(--color6);
+	/* height: 100%; */
+	/* width: 500px; */
+	/* padding: 3rem; */
+	border-radius: 4px 4px 0 0;
+	display: flex;
+	flex-direction: column;
+	overflow-y: scroll;
+}
+
+#large-form form {
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+	padding: 2rem 0;
+}
+
+#medium-form form {
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+	padding: 2rem 0;
+}
+
+/* PAGES */
+
+#page-container {
+	display: flex;
+	flex-direction: column;
+}
+
+#page-heading {
+	font-size: 2rem;
+	padding: 0.2rem 0;
+	margin-bottom: 1rem;
+	border-bottom: 1px solid gray;
+}
+
+.page-heading-group {
+	display: flex;
+	flex-direction: column;
+}
+
+#create-button {
+	align-self: self-end;
+	width: 100px;
+}
+
+#page-content {
+	margin: 1rem;
+	padding: 0.5rem 1rem;
+	border-radius: 4px;
+	background-color: white;
+}
+
+#grid-view {
+	display: flex;
+	margin: 0 4rem;
+	gap: 1rem;
+	flex-wrap: wrap;
+}
+
+.grid-item {
+	cursor: pointer;
+	width: 9.5rem;
+	height: 9.5rem;
+	padding: 1rem;
+	border-radius: 4px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+	background-color: #7fc4fd;
+}
+
+@media screen and (max-width: 760px) {
+	#grid-item {
+		flex-grow: 1;
+	}
+}
+
+/* NAVIGATION */
+
+.horizontal-navigation {
+	padding: 0.5rem;
+	border-radius: 4px;
+	width: 100%;
+	background-color: var(--color5);
+}
+
+.horizontal-navigation ul {
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+	display: flex;
+	flex-direction: row;
+	gap: 1rem;
+	flex-wrap: wrap;
+}

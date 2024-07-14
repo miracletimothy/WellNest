@@ -1,51 +1,49 @@
-import express, { Application } from 'express';
+import express from 'express';
+import path from 'path'; // Import the path module
 import mongoose from 'mongoose';
 import cors from 'cors';
-import { Server } from 'socket.io';
-import http from 'http';
-import appointmentRouter from './routes/appointmentRoutes';
-import chatRoutes from './routes/chatRoutes';
-import contentRouter from './routes/contentRoutes';
-import recordRouter from './routes/recordRoutes';
-import authRouter from './routes/authRoutes';
+import dotenv from 'dotenv';
+import authRoutes from './routes/authRoutes';
+import pregnantWomenRoutes from './routes/pregnantWomenRoutes';
+import healthWorkerRoutes from './routes/healthWorkerRoutes';
+import contentRoutes from './routes/contentRoutes';
 
-const app: Application = express();
-const server = http.createServer(app);
-const io = new Server(server, {
-	cors: {
-		origin: 'http://localhost:5173',
-		methods: ['GET', 'POST'],
-		allowedHeaders: ['Content-Type'],
-		credentials: true,
-	},
-});
+dotenv.config();
+const app = express();
+const PORT = process.env.PORT || 5000;
 
+// Middleware
+app.use(express.json());
 app.use(
 	cors({
-		origin: 'http://localhost:5173',
-		methods: ['GET', 'POST'],
-		allowedHeaders: ['Content-Type'],
-		credentials: true,
+		origin: 'http://localhost:5173', // Allow from specific origin
+		credentials: true, // Allow credentials
+		allowedHeaders: ['Content-Type', 'x-auth-token'], // Specify allowed headers
+		methods: ['GET', 'POST', 'PUT', 'DELETE'], // Specify allowed HTTP methods
 	}),
 );
 
-app.use(express.json());
+// Serve static files from the "uploads" directory
+app.use('/uploads', express.static(path.join(__dirname, '..', 'uploads')));
 
 // Routes
-app.use('/api/auth', authRouter);
-app.use('/api/appointments', appointmentRouter);
-app.use('/api/chat', chatRoutes(io));
-app.use('/api/records', recordRouter);
-app.use('/api/content', contentRouter);
+app.use('/api/auth', authRoutes);
+app.use('/api/pw', pregnantWomenRoutes);
+app.use('/api/hw', healthWorkerRoutes);
+app.use('/api/ec', contentRoutes);
 
-// MongoDB connection
-mongoose
-	.connect('mongodb://localhost:27017/maternal_health', {})
-	.then(() => {
+const startServer = async () => {
+	try {
+		await mongoose.connect(process.env.MONGO_URI!, {});
 		console.log('MongoDB connected');
-	})
-	.catch(err => {
-		console.log('Failed to connect to MongoDB', err);
-	});
 
-export { app, server, io };
+		app.listen(PORT, () => {
+			console.log(`Server running on port ${PORT}`);
+		});
+	} catch (error) {
+		console.error((error as Error).message);
+		process.exit(1);
+	}
+};
+
+startServer();

@@ -1,0 +1,18 @@
+.tag-palette {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px;
+}
+
+.tag {
+	padding: 0rem 1rem;
+	/* padding: 8px 12px; */
+	border-radius: 1000px;
+	background-color: #f0f0f0;
+	cursor: pointer;
+}
+
+.tag.selected {
+	background-color: #007bff;
+	color: #fff;
+}

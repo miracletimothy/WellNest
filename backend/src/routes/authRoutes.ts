@@ -1,9 +1,14 @@
 import { Router } from 'express';
-import { Register, Login } from '../controllers/authController';
+import { register, login } from '../controllers/authController';
+import { verifyCode } from '../controllers/2faController';
 
-const authRouter = Router();
+const router = Router();
 
-authRouter.post('/register', Register);
-authRouter.post('/login', Login);
+// @route   POST api/auth/login
+// @desc    Login user
+// @access  Public
+router.post('/register', register);
+router.post('/verify', verifyCode);
+router.post('/login', login);
 
-export default authRouter;
+export default router;

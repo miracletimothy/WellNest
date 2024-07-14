@@ -2,22 +2,45 @@
 	"name": "backend",
 	"version": "1.0.0",
 	"description": "",
-	"main": "src/server.js",
+	"main": "src/app.ts",
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
-		"start": "ts-node-dev --respawn --transpile-only src/server.ts"
+		"start": "ts-node-dev --respawn --transpile-only src/app.ts",
+		"build": "tsc",
+		"dev": "ts-node-dev --respawn --transpile-only src/app.ts"
 	},
 	"keywords": [],
 	"author": "",
 	"license": "ISC",
 	"dependencies": {
-		"@types/express": "^4.17.21",
-		"@types/mongoose": "^5.11.97",
-		"@types/node": "^20.14.7",
+		"@types/multer": "^1.4.11",
+		"@types/socket.io": "^3.0.2",
+		"bcryptjs": "^2.4.3",
+		"cloudinary": "^2.2.0",
 		"cors": "^2.8.5",
+		"dotenv": "^16.4.5",
 		"express": "^4.19.2",
-		"mongoose": "^8.4.3",
+		"jsonwebtoken": "^9.0.2",
+		"mongoose": "^8.5.0",
+		"multer": "^1.4.5-lts.1",
+		"nodemailer": "^6.9.14",
+		"qrcode": "^1.5.3",
 		"socket.io": "^4.7.5",
-		"ts-node-dev": "^2.0.0"
+		"speakeasy": "^2.0.0"
+	},
+	"devDependencies": {
+		"@types/bcryptjs": "^2.4.6",
+		"@types/cors": "^2.8.13",
+		"@types/express": "^4.17.21",
+		"@types/jsonwebtoken": "^9.0.6",
+		"@types/mongoose": "^5.11.97",
+		"@types/node": "^20.4.2",
+		"@types/nodemailer": "^6.4.15",
+		"@types/qrcode": "^1.5.5",
+		"@types/speakeasy": "^2.0.10",
+		"nodemon": "^3.1.4",
+		"ts-node": "^10.9.2",
+		"ts-node-dev": "^2.0.0",
+		"typescript": "^5.5.3"
 	}
 }

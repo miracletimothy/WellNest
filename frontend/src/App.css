@@ -1,919 +1,120 @@
-/* COLOR VARIABLES */
 :root {
-	/* Dark Mode Theme */
+	--primary-blue: #4285f4;
+	--hover-blue: #357ae8;
+	--light-gray: #f5f5f5;
+	--light-gray2: #e4e4e4;
+	--dark-gray: #5f5f5f;
+	--darker-gray: #4f4f4f;
+	--gray-black: #1e1e1e;
 
-	/* Background */
-	--background: #121212ff; /* very dark gray/black */
+	/* Gradient */
+	--davys-gray: #54566bff;
+	--gunmetal: #303440ff;
+	--electric-blue: #6beffdff;
+	--cornflower-blue: #5196faff;
+}
 
-	/* Surface */
-	--surface: #1d1d1dff; /* slightly lighter than background */
-
-	/* Surface Lighter */
-
-	--surface-lighter: rgb(47, 47, 47);
-	/* Surface Lighter2 */
-
-	--surface-lighter2: rgb(103, 103, 103);
-
-	/* Primary (Orange to match logo) */
-	--primary: #ff8f00ff; /* dark orange */
-
-	/* Secondary */
-	--secondary: #03dac6ff; /* turquoise, bright accent */
-
-	/* Text Colors */
-
-	/* Light text on dark background */
-	--on-background-light: #eaeaeaff; /* light gray */
-
-	/* Light text on surface */
-	--on-surface-light: #a3a3a3ff; /* medium gray */
-
-	/* Regular text on surface */
-	--on-surface: #e2e2e2ff; /* off-white */
-
-	/* Text on primary (Dark for headings and accents) */
-	--on-primary: #07050aff; /* very dark */
-
-	/* Text on secondary */
-	--on-secondary: #000000ff; /* black */
+@font-face {
+	font-family: 'AdobeClean';
+	src: url('./assets/fonts/AdobeClean-Regular.ttf') format('truetype'),
+		url('./assets/fonts/AdobeClean-Regular.woff') format('woff'),
+		url('./assets/fonts/AdobeClean-Regular.woff2') format('woff2');
+	font-weight: normal;
+	font-style: normal;
 }
 
 * {
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
+	font-family: 'AdobeClean', sans-serif;
+	line-height: 2rem;
 }
 
-body,
-html,
-#root {
-	height: 100%;
-	background-color: var(--background);
-	color: var(--on-surface);
-	font-family: Arial, Helvetica, sans-serif;
-	line-height: 1.6;
-	/* overflow: hidden; */
-}
-
-.App {
-	display: grid;
-	grid-template-rows: auto 1fr auto;
-	grid-template-columns: 65px 1fr;
-	grid-template-areas:
-		'header header'
-		'sidebar maincontent'
-		'footer footer';
-	height: 100vh;
-	/* margin: 0 5px; */
-	/* padding: 0 5px; */
-}
-
-/* 
-BUTTONS
-*/
-button {
-	cursor: pointer;
-}
-
-/* AUTH */
-.Auth {
+.AuthLayout {
+	background-image: url('./assets/backgrounds/auth-bg.jpg');
+	background-size: cover;
+	background-position: center;
+	width: 100vw;
 	height: 100vh;
 	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	/* background-color: red; */
-}
-.auth-forms {
-	display: flex;
-	flex-direction: column;
-	justify-content: flex-start;
-	align-items: flex-start;
-	gap: 1rem;
-	height: 350px;
-	/* background-color: red; */
-	background-color: var(--surface);
-	padding: 10px 20px 10px 20px;
-	border-radius: 8px;
-}
-.auth-forms .button-group {
-	display: flex;
-	gap: 0.5rem;
-	align-items: center;
-	justify-content: flex-start;
-	width: 100%;
-	padding: 5px 0;
-	/* background-color: var(--surface);
-	 */
-	border-bottom: 1px solid var(--surface-lighter2);
+	padding: 1rem 6rem 0rem 1rem;
 }
 
-.auth-forms .button-group button {
-	height: 3rem;
-	width: 25%;
-	/* border-radius: 999px; */
-	outline: none;
-	border: none;
-	font-size: 1rem;
-	border-radius: 8px;
-	background-color: var(--surface-lighter2);
-}
-
-.signin-form form,
-.signup-form form {
-	width: 500px;
+.LogoArea {
+	flex: 2;
 	display: flex;
-	flex-direction: column;
-	gap: 0.5rem;
-}
-.signin-form form input,
-.signup-form form input {
-	flex-grow: 1;
-	outline: none;
-	border: none;
-	height: 3rem;
-	border-radius: 999px;
-	padding: 0 0 0 20px;
-	font-size: 1rem;
-	color: var(--surface-lighter2);
-	background-color: var(--surface-lighter);
-}
-.signin-form form button,
-.signup-form form button {
-	outline: none;
-	border: none;
-	height: 3rem;
-	border-radius: 999px;
-	font-size: 1rem;
-	background-color: var(--surface-lighter2);
-}
-.signup-form form .name-inputs {
-	display: flex;
-	gap: 0.5rem;
-	width: 100%;
-}
-
-.signin-form form {
-	display: none;
-}
-
-/* HEADER */
-.Header {
-	grid-area: header;
-	/* border-radius: 4px; */
-	/* background-color: black; */
-	background: linear-gradient(to bottom, var(--surface), var(--background));
-}
-.Header h2 {
-	margin: 0;
-	padding: 0;
-}
-/* FOOTER */
-.Footer {
-	display: flex;
-	justify-content: center;
-	color: var(--on-surface-light);
-	grid-area: footer;
-	/* border-radius: 4px; */
-	/* background-color: black;
-	 */
-	background: linear-gradient(to top, var(--surface), var(--background));
-}
-.Footer h2 {
-	margin: 0;
-	padding: 0;
-}
-
-.Sidebar {
-	grid-area: sidebar;
-	background-color: var(--surface);
-	border-radius: 8px;
-	/* margin-left: 5px; */
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	width: 100%;
+	position: relative;
 }
 
 .MainContent {
-	grid-area: maincontent;
-	display: flex;
-	background-color: var(--background);
-	padding: 20px;
+	flex: 1;
 }
 
-.Nav-Links-Icons {
-	flex-grow: 1;
-	list-style: none;
-	padding: 0;
-	/* margin: 0px 0px 0px 10px; */
-}
-
-.Nav-Links-Icons li {
-	margin: 10px 0;
-}
-
-.Nav-Links-Icons li div:hover {
-	background-color: var(--surface-lighter);
-	border-radius: 999px;
-}
-
-/* LEFT PANEL CONTROLS */
-
-.icon {
-	fill: var(--on-surface-light);
-}
-
-.Left-Panel-Controls {
-	margin: 20px 0px 0px 0px;
-}
-
-.Nav-Links #link {
-	color: var(--on-surface-light);
-	text-decoration: none;
-	display: block;
-	padding: 10px;
-}
-.Nav-Links-Icons #link {
-	color: var(--on-surface-light);
-	text-decoration: none;
-	display: block;
-	padding: 10px;
-}
-
-.Nav-Labels {
-	padding: 0;
-	margin: 0;
-	height: 100%;
-	width: 100%;
-	display: none;
-	flex-direction: column;
-	align-items: flex-start;
-}
-.Nav-Labels .Bottom-Links {
-	justify-self: end;
-}
-
-.Nav-Icons {
-	padding: 0;
-	margin: 0;
-	height: 100%;
-	width: 100%;
+.brand-area {
+	position: absolute;
+	top: 40%;
+	left: 20%;
 	display: flex;
 	flex-direction: column;
+	gap: 0.5rem;
+}
+.brand-area span {
+	display: flex;
 	align-items: center;
-	align-items: center;
-	/* justify-content: flex-start; */
+	justify-content: center;
+	gap: 0.8rem;
 	/* background-color: red; */
 }
-.Nav-Icons .Nav-Links-Icons li div #link div {
-	margin: 0;
-	padding: 0;
-	display: flex;
-}
-
-/* DASHBOARD */
-.Dashboard {
-	width: 100%;
-	height: 100%;
-}
-
-.dashboard-content {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	gap: 1.5rem;
-}
-
-.medium-stat-cards {
-	display: flex;
-	gap: 1rem;
-	width: 100%;
-}
-.small-stat-cards {
-	display: flex;
-	gap: 1rem;
-	width: 100%;
-}
-
-.small-card {
-	flex-grow: 1;
-	border-radius: 4px;
-}
-
-.small-card .small-card-data {
-	margin: 0;
-	padding: 0 15px;
-	display: flex;
-	flex-direction: row;
-	justify-content: flex-start;
-	align-items: center;
-	gap: 1rem;
-	text-align: center;
-}
-
-.small-card-data .card-data h4,
-.small-card-data .card-data p {
-	margin: 0;
-	padding: 0;
-}
-
-.medium-card {
-	flex-grow: 1;
-	margin: 0;
-	padding: 10px 20px;
-	border-radius: 4px;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	text-align: center;
-}
-.stat-name,
-.stat-value,
-.stat-description {
-	margin: 0;
-	padding: 0;
-}
-
-.stat-value {
+.brand-area span span {
 	font-size: 3rem;
 }
+.brand-area p {
+	font-size: 1.5rem;
+}
+.brand-area span span,
+.brand-area p {
+	color: var(--light-gray2);
+}
+#logo {
+	width: 60px;
+}
 
-.large-stat-cards {
+.MainLayout {
+	width: 100vw;
+	height: 100vh;
 	display: flex;
-	flex-direction: row;
-	justify-content: flex-start;
-	align-items: center;
-	gap: 1rem;
-	width: 100%;
-}
-
-.large-card {
-	background-color: var(--surface);
-	/* flex-grow: 1; */
-	height: 250px;
-	width: 50%;
-	border-radius: 4px;
-	padding: 10px 15px;
-}
-
-.large-card .card-data h4,
-.large-card .card-data p {
-	margin: 0;
-	padding: 0;
-}
-
-/* APPOINTMENT */
-.Appointment {
-	width: 100%;
-	display: flex;
-	flex-direction: column;
-}
-
-.AppointmentContent {
-	height: 100%;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-}
-.Appointment .AppointmentContent .AppointmentControls {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	flex: 1;
-	height: 100%;
-	margin-right: 50px;
-	margin-left: 50px;
-}
-
-.Appointment .AppointmentContent .AppointmentDisplay {
-	flex: 3;
-	height: 100%;
-	background-color: var(--surface);
-	border-radius: 20px;
-	padding: 20px;
-}
-
-.Appointment .AppointmentContent .AppointmentControls .ControlsGroupBox {
-	width: 200px;
-	height: 200px;
 	padding: 5px;
-	transform: rotate(45deg);
-	position: relative;
-	/* overflow: hidden; */
+	gap: 0.2rem;
+	background-color: var(--light-gray);
 }
 
-.Appointment
-	.AppointmentContent
-	.AppointmentControls
-	.ControlsGroupBox
-	.ControlBox {
+.Sidebar {
+	background-image: url('./assets/backgrounds/auth-bg.jpg');
+	background-size: cover;
+	max-width: 4rem;
 	width: 100%;
-	height: 100%;
-	background-color: var(--surface);
-	border-radius: 20px;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	gap: 1rem;
+	border-radius: 4px;
 }
 
-.Appointment
-	.AppointmentContent
-	.AppointmentControls
-	.ControlsGroupBox
-	.ControlBox
-	.row1 {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	gap: 1rem;
-}
-
-.Appointment
-	.AppointmentContent
-	.AppointmentControls
-	.ControlsGroupBox
-	.ControlBox
-	.row2 {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	gap: 1rem;
-}
-
-.Appointment
-	.AppointmentContent
-	.AppointmentControls
-	.ControlsGroupBox
-	.ControlBox
-	.row1
-	.ControlButton {
-	text-align: center;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	transform: rotate(-45deg);
-	margin: 10px;
-}
-
-.Appointment
-	.AppointmentContent
-	.AppointmentControls
-	.ControlsGroupBox
-	.ControlBox
-	.row1
-	.ControlButton
-	.ControlButtonIcon {
-	fill: var(--on-surface);
-}
-
-.Appointment
-	.AppointmentContent
-	.AppointmentControls
-	.ControlsGroupBox
-	.ControlBox
-	.row2
-	.ControlButton {
-	text-align: center;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	transform: rotate(-45deg);
-	margin: 10px;
-}
-
-.Appointment
-	.AppointmentContent
-	.AppointmentControls
-	.ControlsGroupBox
-	.ControlBox
-	.row2
-	.ControlButton
-	.ControlButtonIcon {
-	fill: var(--on-surface);
-}
-
-.Appointment
-	.AppointmentContent
-	.AppointmentControls
-	.ControlsGroupBox
-	.ControlBox
-	.ControlButton
-	:hover {
-	padding: 4px;
-	border-radius: 999px;
-	background-color: var(--background);
-}
-
-/* CHAT */
-.Chat {
-	width: 100%;
-	display: flex;
-	flex-direction: column;
-}
-
-.ChatContent {
-	height: 100%;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	gap: 1rem;
-}
-.Chat .ChatContent .ChatSideBar {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
+.MainLayout .MainContent {
 	flex: 1;
-	height: 100%;
-	background-color: var(--surface);
-	border-radius: 8px;
-	/* overflow: hidden; */
-}
-.ChatSideBarFixedBottom {
-	/* background-color: red; */
-	background: linear-gradient(var(--surface), var(--background));
-	height: 5%;
-	width: 100%;
-	display: flex;
-	justify-content: center;
-	align-items: center;
+	/* background-image: url('./assets/backgrounds/auth-bg.jpg'); */
+	background-color: var(--light-gray2);
+	background-size: cover;
+	background-position: center;
+	border-radius: 4px;
+	overflow-y: scroll;
 }
 
-.Chat .ChatContent .ChatMessageArea {
-	flex: 3;
-	height: 100%;
-	background-color: tomato;
-	background-color: var(--surface);
-	border-radius: 8px;
-	padding: 20px;
-}
-
-.Chat .ChatContent .ChatSideBar .Content {
-	width: 100%;
-	height: 100%;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	/* overflow: hidden; */
-}
-
-.Chat .ChatContent .ChatSideBar .Content .ChatSideBarHeader {
-	flex: 1;
-	width: 100%;
-}
-
-.Chat .ChatContent .ChatSideBar .Content .ChatSideBarContent {
-	flex: 20;
-	width: 100%;
-	/* overflow: hidden; */
-}
-.Chat .ChatContent .ChatSideBar .Content .ChatSideBarContent .ChatList {
-	display: flex; /* Or use block layout with overflow */
-	flex-direction: column;
-	justify-content: flex-start;
-	align-items: flex-start;
-	overflow-y: scroll; /* For horizontal scrolling */
-	scroll-snap-type: y mandatory; /* Scroll snapping in the vertical direction */
-	scroll-behavior: smooth; /* Optional, for smooth scrolling */
-
-	/* background-color: red; */
-	height: 363px;
-	width: 100%;
-	/* overflow-y: scroll; */
-	scrollbar-width: none;
-}
-
-.Chat .ChatContent .ChatMessageArea .Content {
-	width: 100%;
-	height: 100%;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-}
-
-.Chat .ChatContent .ChatMessageArea .Content .ChatMessageArea-Messages {
-	flex: 7;
-	width: 100%;
-}
-
-.Chat .ChatContent .ChatMessageArea .Content .ChatMessageArea-Controls {
-	position: relative;
-	flex: 1;
-	width: 100%;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	gap: 0.5rem;
-	padding: 0 20px;
-}
-
-.Chat .ChatContent .ChatMessageArea .Content .ChatMessageArea-Controls form {
-	flex-grow: 1;
-}
-
-.Chat
-	.ChatContent
-	.ChatMessageArea
-	.Content
-	.ChatMessageArea-Controls
-	form
-	input {
-	/* position: relative; */
-	width: 100%;
-	height: 50px;
-	border-radius: 999px;
-	outline: none;
-	border: none;
-	padding: 0 0 0 20px;
-	font-size: 1rem;
-	color: var(--on-surface-light);
-	background-color: var(--surface-lighter);
-}
-.Chat .ChatContent .ChatMessageArea .Content .ChatMessageArea-Controls div {
-	cursor: pointer;
-	position: absolute;
-	right: 50px;
-	display: flex;
-	text-align: center;
-	justify-content: center;
-	align-items: center;
-	padding: 4px;
-	border-radius: 999px;
-	background-color: var(--surface-lighter2);
-}
-
-.Chat
-	.ChatContent
-	.ChatMessageArea
-	.Content
-	.ChatMessageArea-Controls
-	div
-	.SendMessageIcon {
-	height: 25px;
-	width: 25px;
-	fill: var(--surface);
-}
-
-/* CHAT SIDEBAR */
-
-.ChatSideBarContent {
-	width: 100%;
-	padding: 10px;
-	/* overflow-y: auto; */
-	transition: width 0.3s ease;
-	height: 100%;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-}
-/* .ChatSideBarContent::-webkit-scrollbar {
-	display: none;
-} */
-
-.chat-summary {
-	cursor: pointer;
-	flex: 0 0 auto; /* Prevent shrinking or growing */
-	scroll-snap-align: center; /* Center align the items in the container */
-	width: 100%; /* Adjust width as needed */
-	justify-content: center;
-	display: flex;
-	align-items: center;
-	margin-bottom: 10px;
-	padding: 0 10px;
-	/* border-radius: 8px; */
-}
-
-.profile-pic {
-	width: 40px;
-	height: 40px;
-	border-radius: 50%;
-	background-color: var(--surface-lighter2);
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	margin-right: 10px;
-	position: relative;
-}
-
-.chat-info {
-	display: flex;
-	flex-grow: 1;
-	flex-direction: column;
-	border-bottom: 1px solid var(--surface-lighter);
-}
-
-.badge {
-	position: absolute;
-	top: -5px;
-	right: -5px;
-	width: 20px;
-	height: 20px;
-	border-radius: 50%;
-	background-color: red;
-	color: white;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	font-size: 12px;
-}
-/* First collapse: Hide chat summaries */
-@media screen and (max-width: 1000px) {
-	.Chat .ChatContent .ChatSideBar {
-		flex: 1;
-	}
-	.Chat .ChatContent .ChatMessageArea {
-		flex: 10;
-	}
-
-	.chat-summary {
+@media only screen and (max-width: 1200px) {
+	.AuthLayout {
+		padding: 1rem;
 		flex-direction: column;
-		justify-content: center;
 		align-items: center;
-
-		flex: 0 0 auto; /* Prevent shrinking or growing */
-		scroll-snap-align: center; /* Center align the items in the container */
-		width: 100%; /* Adjust width as needed */
-		/* justify-content: center; */
-		display: flex;
-		/* align-items: center; */
-		margin-bottom: 10px;
-		padding: 5px 0px;
-		/* border-radius: 8px; */
 	}
 
-	.chat-info {
-		display: none;
+	.LogoArea {
+		display: none; /* Hide the LogoArea on smaller screens */
 	}
-
-	.profile-pic {
-		margin-right: 0;
-	}
-}
-
-@media screen and (max-width: 900px) {
-	.Chat .ChatContent .ChatSideBar {
-		display: none;
-	}
-}
-
-.card {
-	background-color: var(--surface);
-}
-
-/* QUICK FIX */
-.AppointmentDisplay {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-}
-
-/* RECORDS PAGE */
-.records-page-container {
-	width: 100%;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	gap: 0.5rem;
-	/* justify-content: center; */
-}
-
-/* MENUBAR COMPONENT*/
-.menu-bar {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	gap: 2rem;
-	padding: 10px;
-	border-radius: 8px;
-	background-color: var(--surface);
-}
-
-/* MENUBUTTON COMPONENT */
-.menu-button {
-	/* background-color: red; */
-	width: 90px;
-	padding: 5px 4px;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	color: var(--surface-lighter2);
-}
-
-.menu-button:hover {
-	background-color: var(--surface-lighter);
-	border-radius: 8px;
-	color: var(--background);
-}
-.menu-button:focus {
-	background-color: var(--surface-lighter);
-	border-radius: 8px;
-	color: var(--background);
-}
-.ButtonIcons {
-	fill: var(--surface-lighter2);
-}
-
-/* RECORDS PAGES */
-.content-display {
-	/* background-color: pink; */
-	width: 100%;
-	height: 100%;
-	border-radius: 8px;
-	background-color: var(--surface);
-}
-
-/* Upload */
-.upload-container {
-	width: 100%;
-	height: 100%;
-	/* background-color: green; */
-}
-.upload-container form {
-	display: flex;
-	flex-direction: row;
-	height: 100%;
-	width: 100%;
-}
-
-.upload-container form label {
-	cursor: pointer;
-	position: relative;
-	display: inline-block;
-	flex: 1;
-	margin: 60px;
-	border-radius: 8px;
-	border: 2px dashed var(--surface-lighter);
-	background-color: var(--background);
-
-	/* background-color: red; */
-}
-.upload-container form label:hover {
-	border: 3px dashed var(--surface-lighter2);
-}
-.upload-container form label h2 {
-	position: absolute;
-	top: 45%;
-	left: 25%;
-	color: var(--surface);
-}
-
-.upload-container form .upload-details {
-	flex: 1;
-	margin-top: 60px;
-	margin-right: 60px;
-	display: flex;
-	flex-direction: column;
-	gap: 1rem;
-}
-
-.upload-container form .upload-details h2 {
-	color: var(--surface-lighter2);
-}
-
-.upload-container form .upload-details input {
-	height: 3rem;
-	border-radius: 8px;
-	padding-left: 20px;
-	font-size: 1rem;
-	outline: 0;
-	border: 0;
-	background-color: var(--surface-lighter);
-	color: var(--surface-lighter2);
-}
-
-.upload-container form .upload-details textarea {
-	min-height: 10rem;
-	max-height: 10rem;
-	max-height: 8rem;
-	min-width: 100%;
-	max-width: 100%;
-	padding: 20px;
-	border-radius: 8px;
-	font-size: 1rem;
-	outline: 0;
-	border: 0;
-	background-color: var(--surface-lighter);
-	color: var(--surface-lighter2);
-}
-
-.upload-container form .upload-details div button {
-	height: 3rem;
-	width: 100%;
-	border-radius: 8px;
-	outline: 0;
-	border: 0;
-	font-size: 1rem;
-	font-weight: 600;
-	background-color: var(--surface-lighter2);
-	color: var(--background);
 }

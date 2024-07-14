@@ -1,0 +1,23 @@
+.video-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+	gap: 20px;
+	padding: 20px;
+}
+
+.video-item {
+	position: relative;
+	cursor: pointer;
+}
+
+.video-item video {
+	width: 100%; /* Ensure the video fills its container */
+	height: auto; /* Maintain aspect ratio */
+	display: block;
+}
+
+.video-title {
+	margin-top: 10px;
+	font-size: 14px;
+	text-align: center;
+}

@@ -1,26 +1,33 @@
-import { Schema, model } from 'mongoose';
+import mongoose, { Document, Schema } from 'mongoose';
 
-interface UserInterface {
+export interface IUser extends Document {
+	firstName: string;
+	lastName?: string;
 	email: string;
 	password: string;
-	role: 'patient' | 'healthworker';
+	role: 'pregnant_woman' | 'health_worker';
+	isVerified: boolean;
+	twoFactorSecret?: string;
+	profilePic?: string;
 }
 
-const userSchema = new Schema<UserInterface>(
+const UserSchema: Schema = new Schema(
 	{
-		email: {
-			type: String,
-			required: true,
-			unique: true,
-		},
-		password: {
-			type: String,
-			required: true,
-		},
+		email: { type: String, required: true, unique: true },
+		firstName: { type: String, required: true },
+		lastName: { type: String, required: false },
+		password: { type: String, required: true },
 		role: {
 			type: String,
-			enum: ['patient', 'healthworker'],
 			required: true,
+			enum: ['pregnant_woman', 'health_worker'],
+		},
+		isVerified: { type: Boolean, default: false },
+		twoFactorSecret: { type: String },
+		profilePic: {
+			type: String,
+			default:
+				'https://github.com/miracletimothy/assets/blob/main/user.png?raw=true',
 		},
 	},
 	{
@@ -28,5 +35,4 @@ const userSchema = new Schema<UserInterface>(
 	},
 );
 
-const User = model<UserInterface>('User', userSchema);
-export default User;
+export default mongoose.model<IUser>('User', UserSchema);
