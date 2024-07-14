@@ -10,7 +10,7 @@ import contentRoutes from './routes/contentRoutes';
 
 dotenv.config();
 const app = express();
-const PORT = process.env.PORT || 5000;
+const PORT = 5000;
 
 // Middleware
 app.use(express.json());
@@ -27,6 +27,9 @@ app.use(
 app.use('/uploads', express.static(path.join(__dirname, '..', 'uploads')));
 
 // Routes
+app.get('/', (req, res) => {
+	res.json('CMHMCS Server is running');
+});
 app.use('/api/auth', authRoutes);
 app.use('/api/pw', pregnantWomenRoutes);
 app.use('/api/hw', healthWorkerRoutes);
@@ -34,8 +37,11 @@ app.use('/api/ec', contentRoutes);
 
 const startServer = async () => {
 	try {
-		await mongoose.connect(process.env.MONGO_URI!, {});
-		console.log('MongoDB connected');
+		await mongoose.connect(
+			'mongodb+srv://miracletimothyofficial:eCbGR6Riqnyt22M9@cmhmcs-cluster-0.pcalzxq.mongodb.net/cmhmcs',
+			{},
+		);
+		console.log('MongoAtlas connected');
 
 		app.listen(PORT, () => {
 			console.log(`Server running on port ${PORT}`);

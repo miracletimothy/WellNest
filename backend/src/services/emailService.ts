@@ -6,8 +6,8 @@ dotenv.config();
 const transporter = nodemailer.createTransport({
 	service: 'Gmail',
 	auth: {
-		user: process.env.EMAIL_USER,
-		pass: process.env.EMAIL_PASS,
+		user: 'cmhmcs@gmail.com',
+		pass: 'ydnc qxvn oago fftx',
 	},
 });
 
@@ -36,7 +36,7 @@ const templates = {
 
 export const sendEmail = async (to: string, subject: string, html: string) => {
 	const mailOptions = {
-		from: process.env.EMAIL_USER,
+		from: 'cmhmcs@gmail.com',
 		to,
 		subject,
 		html,
