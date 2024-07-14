@@ -5,7 +5,10 @@ dotenv.config();
 
 const connectDB = async () => {
 	try {
-		await mongoose.connect('mongodb://127.0.0.1:27017/cmhmcs', {});
+		await mongoose.connect(
+			'mongodb+srv://miracletimothyofficial:eCbGR6Riqnyt22M9@cmhmcs-cluster-0.pcalzxq.mongodb.net/',
+			{},
+		);
 		console.log('MongoDB Connected');
 	} catch (err) {
 		console.error((err as Error).message);
