@@ -1,5 +1,5 @@
 import express from 'express';
-import path from 'path'; // Import the path module
+import path from 'path';
 import mongoose from 'mongoose';
 import cors from 'cors';
 import dotenv from 'dotenv';
@@ -9,24 +9,22 @@ import healthWorkerRoutes from './routes/healthWorkerRoutes';
 import contentRoutes from './routes/contentRoutes';
 
 dotenv.config();
-const app = express();
-const PORT = 5000;
 
-// Middleware
+const app = express();
+const PORT = process.env.PORT || 5000;
+
 app.use(express.json());
 app.use(
 	cors({
-		origin: 'http://localhost:5173', // Allow from specific origin
-		credentials: true, // Allow credentials
-		allowedHeaders: ['Content-Type', 'x-auth-token'], // Specify allowed headers
-		methods: ['GET', 'POST', 'PUT', 'DELETE'], // Specify allowed HTTP methods
+		origin: 'https://well-nest-frontend.vercel.app',
+		credentials: true,
+		allowedHeaders: ['Content-Type', 'x-auth-token'],
+		methods: ['GET', 'POST', 'PUT', 'DELETE'],
 	}),
 );
 
-// Serve static files from the "uploads" directory
 app.use('/uploads', express.static(path.join(__dirname, '..', 'uploads')));
 
-// Routes
 app.get('/', (req, res) => {
 	res.json('CMHMCS Server is running');
 });
