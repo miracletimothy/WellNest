@@ -20,8 +20,8 @@ app.use((0, cors_1.default)({
     origin: '*',
 }));
 // Default
-app.get('/api', (req, res) => {
-    res.status(201).json({ message: 'Welcome to CMHMCS API' });
+app.get('/', (req, res) => {
+    res.status(201).json({ message: 'CMHMCS Server is Running!' });
 });
 // User routes
 app.use('/api/auth', authRoutes_1.default);

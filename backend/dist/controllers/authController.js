@@ -13,12 +13,14 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.login = exports.register = void 0;
+const dotenv_1 = __importDefault(require("dotenv"));
 const bcryptjs_1 = __importDefault(require("bcryptjs"));
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const crypto_1 = __importDefault(require("crypto"));
 const UserModel_1 = __importDefault(require("../models/UserModel"));
 const TwoFactorModel_1 = __importDefault(require("../models/TwoFactorModel"));
 const emailService_1 = require("../services/emailService");
+dotenv_1.default.config();
 const register = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { email, firstName, lastName, password, role } = req.body;
     try {
@@ -70,7 +72,7 @@ const login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
                 profilePic: user.profilePic,
             },
         };
-        jsonwebtoken_1.default.sign(payload, 'eyJhbGciOiJIUzI1NiIsInR5cCI6', { expiresIn: '48h' }, (err, token) => {
+        jsonwebtoken_1.default.sign(payload, process.env.JWT_SECRET, { expiresIn: '48h' }, (err, token) => {
             if (err)
                 throw err;
             res.json({ token, user: payload.user });

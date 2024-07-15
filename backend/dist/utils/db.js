@@ -17,7 +17,7 @@ const dotenv_1 = __importDefault(require("dotenv"));
 dotenv_1.default.config();
 const connectDB = () => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        yield mongoose_1.default.connect('mongodb+srv://miracletimothyofficial:eCbGR6Riqnyt22M9@cmhmcs-cluster-0.pcalzxq.mongodb.net/', {});
+        yield mongoose_1.default.connect(process.env.MONGO_URI, {});
         console.log('MongoDB Connected');
     }
     catch (err) {
