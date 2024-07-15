@@ -11,9 +11,9 @@ import contentRoutes from './routes/contentRoutes';
 dotenv.config();
 
 const app = express();
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5000 || 6000;
 
-app.use(express.json());
+// CORS Configuration
 app.use(
 	cors({
 		origin: 'https://well-nest-frontend.vercel.app',
@@ -23,11 +23,13 @@ app.use(
 	}),
 );
 
+app.use(express.json());
 app.use('/uploads', express.static(path.join(__dirname, '..', 'uploads')));
 
 app.get('/', (req, res) => {
 	res.json('CMHMCS Server is running');
 });
+
 app.use('/api/auth', authRoutes);
 app.use('/api/pw', pregnantWomenRoutes);
 app.use('/api/hw', healthWorkerRoutes);
