@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './TagPalette.css'; // Import some basic styling for the tags
 
 const tagsList = [

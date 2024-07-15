@@ -3,7 +3,6 @@ import { useHistory, useParams } from 'react-router-dom';
 import LoadingAnimation from '../../components/Loaders/LoadingAnimation';
 import axiosInstance from '../../utils/axiosInstance';
 import Header from '../../components/Header/Header';
-import Logo from '../../assets/img/101515806.jpg';
 import '../../styles/Theme.css';
 
 import VideosView from './ContentTypes/VideosView';

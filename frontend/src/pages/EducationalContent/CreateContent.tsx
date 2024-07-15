@@ -3,7 +3,7 @@ import { jwtDecode } from 'jwt-decode';
 import axiosInstance from '../../utils/axiosInstance';
 import TagPalette from '../../components/TagPalette/TagPalette';
 import Header from '../../components/Header/Header';
-import Logo from '../../assets/img/101515806.jpg';
+
 import '../../styles/Theme.css';
 
 interface DecodedToken {
