@@ -3,6 +3,14 @@
 	"builds": [{ "src": "dist/app.js", "use": "@vercel/node" }],
 	"routes": [
 		{
+			"src": "/api/(.*)",
+			"dest": "/dist/app.js"
+		},
+		{
+			"src": "/uploads/(.*)",
+			"dest": "/dist/app.js"
+		},
+		{
 			"src": "/(.*)",
 			"dest": "/dist/app.js"
 		}
