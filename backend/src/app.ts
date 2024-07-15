@@ -16,17 +16,20 @@ connectDB();
 
 app.use(express.json());
 
-const allowedOrigins = ['https://well-nest-frontend.vercel.app', '*'];
+const allowedOrigins = ['https://well-nest-frontend.vercel.app'];
 
 app.use(
 	cors({
 		origin: allowedOrigins,
+		credentials: true, // Allow credentials (cookies, authorization headers)
+		methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allow specific methods
+		allowedHeaders: ['Content-Type', 'Authorization'], // Allow specific headers
 	}),
 );
 
-// Default
+// Default route
 app.get('/', (req: Request, res: Response) => {
-	res.status(201).json({ message: 'CMHMCS Server is Running!' });
+	res.status(200).json({ message: 'CMHMCS Server is Running!' });
 });
 
 // User routes
@@ -35,8 +38,11 @@ app.use('/api/pw', pregnantWomenRoutes);
 app.use('/api/hw', healthWorkerRoutes);
 app.use('/api/ec', contentRoutes);
 
+// Serve static files from the uploads directory
 app.use('/uploads', express.static(path.join(__dirname, '..', 'uploads')));
 
 const PORT = process.env.PORT || 5000;
 
-app.listen(PORT, (): void => console.log(`Server is running`));
+app.listen(PORT, () => {
+	console.log(`Server is running on port ${PORT}`);
+});
