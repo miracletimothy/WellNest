@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import Header from '../components/Header/Header';
-import { useHistory } from 'react-router-dom';
 import { jwtDecode } from 'jwt-decode';
 import './Pages.css';
 

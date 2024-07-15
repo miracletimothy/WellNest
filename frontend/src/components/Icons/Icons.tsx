@@ -13,8 +13,6 @@ const AnalyticsIcon: React.FC<ButtonIconsProps> = ({
 	height,
 	width,
 	className,
-	onClick,
-	style,
 }) => {
 	return (
 		<div>

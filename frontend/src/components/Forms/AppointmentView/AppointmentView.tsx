@@ -32,8 +32,7 @@ const initialAppointments: Appointment[] = [
 ];
 
 const AppointmentView: React.FC = () => {
-	const [appointments, setAppointments] =
-		useState<Appointment[]>(initialAppointments);
+	const [appointments] = useState<Appointment[]>(initialAppointments);
 	const [searchQuery, setSearchQuery] = useState<string>('');
 	const [filterCriteria, setFilterCriteria] = useState<string>('all'); // Example: 'all', 'approved', 'pending'
 	const history = useHistory();
