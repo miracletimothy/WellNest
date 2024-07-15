@@ -1,10 +1,12 @@
 import { Request, Response } from 'express';
+import dotenv from 'dotenv';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import crypto from 'crypto';
 import User from '../models/UserModel';
 import TwoFactor from '../models/TwoFactorModel';
 import { sendVerificationEmail } from '../services/emailService';
+dotenv.config();
 
 export const register = async (req: Request, res: Response) => {
 	const { email, firstName, lastName, password, role } = req.body;
@@ -71,7 +73,7 @@ export const login = async (req: Request, res: Response) => {
 
 		jwt.sign(
 			payload,
-			'eyJhbGciOiJIUzI1NiIsInR5cCI6',
+			process.env.JWT_SECRET as string,
 			{ expiresIn: '48h' },
 			(err, token) => {
 				if (err) throw err;
