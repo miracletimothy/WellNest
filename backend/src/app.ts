@@ -16,11 +16,9 @@ connectDB();
 
 app.use(express.json());
 
-const allowedOrigins = ['https://well-nest-frontend.vercel.app'];
-
 app.use(
 	cors({
-		origin: allowedOrigins,
+		origin: 'https://well-nest-frontend.vercel.app',
 		credentials: true, // Allow credentials (cookies, authorization headers)
 		methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allow specific methods
 		allowedHeaders: ['Content-Type', 'Authorization'], // Allow specific headers
