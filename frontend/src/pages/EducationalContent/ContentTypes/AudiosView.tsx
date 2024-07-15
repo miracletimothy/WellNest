@@ -15,7 +15,7 @@ const AudiosView: React.FC<{ category: string }> = ({ category }) => {
 			const token = localStorage.getItem('token');
 			try {
 				const response = await axiosInstance.get<Audio[]>(
-					`http://127.0.0.1:5000/api/hw/content?category=${category}&type=audio`,
+					`/hw/content?category=${category}&type=audio`,
 					{
 						headers: {
 							'Content-Type': 'application/json',

@@ -18,7 +18,7 @@ const ImagesView: React.FC<{ category: string }> = ({ category }) => {
 			const token = localStorage.getItem('token');
 			try {
 				const response = await axiosInstance.get<Image[]>(
-					`http://127.0.0.1:5000/api/ec/?category=${category}&type=image`,
+					`/ec/?category=${category}&type=image`,
 					{
 						headers: {
 							'Content-Type': 'application/json',

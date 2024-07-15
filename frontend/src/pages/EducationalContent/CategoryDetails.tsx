@@ -49,7 +49,7 @@ const CategoryDetails: React.FC = () => {
 			const token = localStorage.getItem('token');
 			try {
 				const response = await axiosInstance.get(
-					`http://127.0.0.1:5000/api/hw/content-categories`,
+					`/hw/content-categories`,
 					{
 						headers: {
 							'Content-Type': 'application/json',

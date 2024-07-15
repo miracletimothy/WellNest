@@ -18,7 +18,7 @@ const VideosView: React.FC<{ category: string }> = ({ category }) => {
 			const token = localStorage.getItem('token');
 			try {
 				const response = await axiosInstance.get<Video[]>(
-					`http://127.0.0.1:5000/api/ec/?category=${category}&type=video`,
+					`/ec/?category=${category}&type=video`,
 					{
 						headers: {
 							'Content-Type': 'application/json',

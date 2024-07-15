@@ -81,7 +81,7 @@ const CreateContent: React.FC = () => {
 
 		try {
 			const response = await axiosInstance.post(
-				'http://127.0.0.1:5000/api/ec/create',
+				'/ec/create',
 				formData,
 				{
 					headers: {

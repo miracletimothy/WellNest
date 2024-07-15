@@ -15,7 +15,7 @@ const FilesView: React.FC<{ category: string }> = ({ category }) => {
 			const token = localStorage.getItem('token');
 			try {
 				const response = await axiosInstance.get<File[]>(
-					`http://127.0.0.1:5000/api/hw/content?category=${category}&type=file`,
+					`/hw/content?category=${category}&type=file`,
 					{
 						headers: {
 							'Content-Type': 'application/json',
