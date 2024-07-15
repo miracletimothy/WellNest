@@ -23,8 +23,8 @@ app.use(
 );
 
 // Default
-app.get('/api', (req: Request, res: Response) => {
-	res.status(201).json({ message: 'Welcome to CMHMCS API' });
+app.get('/', (req: Request, res: Response) => {
+	res.status(201).json({ message: 'CMHMCS Server is Running!' });
 });
 
 // User routes
