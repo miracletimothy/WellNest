@@ -16,16 +16,13 @@ const CreateAccount: React.FC = () => {
 	const handleSubmit = async (e: React.FormEvent) => {
 		e.preventDefault();
 		try {
-			const res = await axiosInstance.post(
-				'https:/well-nest-server.vercel.app/auth/register',
-				{
-					email,
-					firstName,
-					lastName,
-					password,
-					role,
-				},
-			);
+			const res = await axiosInstance.post('/auth/register', {
+				email,
+				firstName,
+				lastName,
+				password,
+				role,
+			});
 
 			if (res.data.msg === 'Verification code sent to your email') {
 				history.push(`/verify/${email}`);

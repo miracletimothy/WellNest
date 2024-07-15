@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const axiosInstance = axios.create({
-	baseURL: 'well-nest-server.vercel.app/api',
+	baseURL: 'https://well-nest-server.vercel.app/api',
 });
 
 axiosInstance.interceptors.request.use(
