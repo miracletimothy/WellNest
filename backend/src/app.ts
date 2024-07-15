@@ -16,9 +16,11 @@ connectDB();
 
 app.use(express.json());
 
+const allowedOrigins = ['https://well-nest-frontend.vercel.app', '*'];
+
 app.use(
 	cors({
-		origin: '*',
+		origin: allowedOrigins,
 	}),
 );
 

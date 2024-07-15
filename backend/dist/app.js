@@ -16,8 +16,9 @@ const app = (0, express_1.default)();
 dotenv_1.default.config();
 (0, db_1.default)();
 app.use(express_1.default.json());
+const allowedOrigins = ['https://well-nest-frontend.vercel.app', '*'];
 app.use((0, cors_1.default)({
-    origin: '*',
+    origin: allowedOrigins,
 }));
 // Default
 app.get('/', (req, res) => {
