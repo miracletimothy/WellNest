@@ -1,55 +1,40 @@
-import express from 'express';
-import path from 'path';
-import mongoose from 'mongoose';
-import cors from 'cors';
+import express, { Application, Request, Response } from 'express';
 import dotenv from 'dotenv';
+import cors from 'cors';
+import connectDB from './utils/db';
+import path from 'path';
 import authRoutes from './routes/authRoutes';
 import pregnantWomenRoutes from './routes/pregnantWomenRoutes';
 import healthWorkerRoutes from './routes/healthWorkerRoutes';
 import contentRoutes from './routes/contentRoutes';
 
+const app: Application = express();
+
 dotenv.config();
 
-const app = express();
-const PORT = process.env.PORT || 5000 || 6000;
+connectDB();
 
-// CORS Configuration
+app.use(express.json());
+
 app.use(
 	cors({
-		origin: 'https://well-nest-frontend.vercel.app',
-		credentials: true,
-		allowedHeaders: ['Content-Type', 'x-auth-token'],
-		methods: ['GET', 'POST', 'PUT', 'DELETE'],
+		origin: '*',
 	}),
 );
 
-app.use(express.json());
-app.use('/uploads', express.static(path.join(__dirname, '..', 'uploads')));
-
-app.get('/', (req, res) => {
-	res.json('CMHMCS Server is running');
+// Default
+app.get('/api', (req: Request, res: Response) => {
+	res.status(201).json({ message: 'Welcome to CMHMCS API' });
 });
 
+// User routes
 app.use('/api/auth', authRoutes);
 app.use('/api/pw', pregnantWomenRoutes);
 app.use('/api/hw', healthWorkerRoutes);
 app.use('/api/ec', contentRoutes);
 
-const startServer = async () => {
-	try {
-		await mongoose.connect(
-			'mongodb+srv://miracletimothyofficial:eCbGR6Riqnyt22M9@cmhmcs-cluster-0.pcalzxq.mongodb.net/cmhmcs',
-			{},
-		);
-		console.log('MongoAtlas connected');
+app.use('/uploads', express.static(path.join(__dirname, '..', 'uploads')));
 
-		app.listen(PORT, () => {
-			console.log(`Server running on port ${PORT}`);
-		});
-	} catch (error) {
-		console.error((error as Error).message);
-		process.exit(1);
-	}
-};
+const PORT = process.env.PORT || 5000;
 
-startServer();
+app.listen(PORT, (): void => console.log(`Server is running`));
