@@ -18,7 +18,7 @@ app.use(express.json());
 
 app.use(
 	cors({
-		origin: 'https://well-nest-frontend.vercel.app',
+		origin: '*',
 		credentials: true, // Allow credentials (cookies, authorization headers)
 		methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allow specific methods
 		allowedHeaders: ['Content-Type', 'Authorization'], // Allow specific headers

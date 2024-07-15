@@ -17,7 +17,7 @@ dotenv_1.default.config();
 (0, db_1.default)();
 app.use(express_1.default.json());
 app.use((0, cors_1.default)({
-    origin: 'https://well-nest-frontend.vercel.app',
+    origin: '*',
     credentials: true, // Allow credentials (cookies, authorization headers)
     methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allow specific methods
     allowedHeaders: ['Content-Type', 'Authorization'], // Allow specific headers
