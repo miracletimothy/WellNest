@@ -1,19 +1,19 @@
-import nodemailer from 'nodemailer';
-import dotenv from 'dotenv';
+import nodemailer from "nodemailer";
+import dotenv from "dotenv";
 
 dotenv.config();
 
 const transporter = nodemailer.createTransport({
-	service: 'Gmail',
-	auth: {
-		user: 'cmhmcs@gmail.com',
-		pass: 'ydnc qxvn oago fftx',
-	},
+  service: "Gmail",
+  auth: {
+    user: process.env.EMAIL_ADDRESS,
+    pass: process.env.EMAIL_PASSWORD,
+  },
 });
 
 // Email templates
 const templates = {
-	welcome: (username: string) => `
+  welcome: (username: string) => `
     <html>
       <body>
         <h3>Welcome, ${username}!</h3>
@@ -22,7 +22,7 @@ const templates = {
       </body>
     </html>
   `,
-	verification: (username: string, code: string) => `
+  verification: (username: string, code: string) => `
     <html>
       <body>
         <h3>Welcome, ${username}!</h3>
@@ -31,36 +31,36 @@ const templates = {
       </body>
     </html>
   `,
-	// Add more templates as needed
+  // Add more templates as needed
 };
 
 export const sendEmail = async (to: string, subject: string, html: string) => {
-	const mailOptions = {
-		from: 'cmhmcs@gmail.com',
-		to,
-		subject,
-		html,
-	};
+  const mailOptions = {
+    from: "cmhmcs@gmail.com",
+    to,
+    subject,
+    html,
+  };
 
-	try {
-		const info = await transporter.sendMail(mailOptions);
-		console.log('Email sent:', info.response);
-	} catch (error) {
-		console.error('Error sending email:', error);
-		throw new Error('Failed to send email');
-	}
+  try {
+    const info = await transporter.sendMail(mailOptions);
+    console.log("Email sent:", info.response);
+  } catch (error) {
+    console.error("Error sending email:", error);
+    throw new Error("Failed to send email");
+  }
 };
 
 export const sendWelcomeEmail = async (to: string, username: string) => {
-	const html = templates.welcome(username);
-	await sendEmail(to, 'Welcome to Our App!', html);
+  const html = templates.welcome(username);
+  await sendEmail(to, "Welcome to Our App!", html);
 };
 
 export const sendVerificationEmail = async (
-	to: string,
-	username: string,
-	code: string,
+  to: string,
+  username: string,
+  code: string
 ) => {
-	const html = templates.verification(username, code);
-	await sendEmail(to, 'Verify Your Account', html);
+  const html = templates.verification(username, code);
+  await sendEmail(to, "Verify Your Account", html);
 };

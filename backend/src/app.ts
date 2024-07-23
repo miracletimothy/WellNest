@@ -1,12 +1,23 @@
-import express, { Application, Request, Response } from 'express';
-import dotenv from 'dotenv';
-import cors from 'cors';
-import connectDB from './utils/db';
-import path from 'path';
-import authRoutes from './routes/authRoutes';
-import pregnantWomenRoutes from './routes/pregnantWomenRoutes';
-import healthWorkerRoutes from './routes/healthWorkerRoutes';
-import contentRoutes from './routes/contentRoutes';
+import express, { Application, Request, Response } from "express";
+import dotenv from "dotenv";
+import cors from "cors";
+import connectDB from "./utils/db";
+import path from "path";
+import authRoutes from "./routes/authRoutes";
+import pregnantWomenRoutes from "./routes/pregnantWomenRoutes";
+import healthWorkerRoutes from "./routes/healthWorkerRoutes";
+import contentRoutes from "./routes/contentRoutes";
+// APPOINTMENT SCHEDULING
+import ServiceTypeRoutes from "./routes/AppointmentScheduling/ServiceTypeRoutes";
+import ManageProviderScheduleRoutes from "./routes/AppointmentScheduling/ManageProviderScheduleRoutes";
+import AppointmentRequestsRoutes from "./routes/AppointmentScheduling/AppointmentRequestsRoutes";
+import ManageAppointmentsRoutes from "./routes/AppointmentScheduling/ManageAppointmentsRoutes";
+
+// CHAT
+import MessagesRoutes from "./routes/Chat/MessageRoutes";
+
+// CONTENT
+import ContentRoutes from "./routes/Content/ContentRoutes";
 
 const app: Application = express();
 
@@ -17,30 +28,46 @@ connectDB();
 app.use(express.json());
 
 app.use(
-	cors({
-		origin: '*',
-		credentials: true, // Allow credentials (cookies, authorization headers)
-		methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allow specific methods
-		allowedHeaders: ['Content-Type', 'Authorization'], // Allow specific headers
-	}),
+  cors({
+    origin: "*", // Consider using a specific origin for better security in production
+    credentials: true, // Allow credentials (cookies, authorization headers)
+    methods: ["GET", "POST", "PUT", "DELETE"], // Allow specific methods
+    allowedHeaders: ["Content-Type", "Authorization", "x-auth-token"], // Include x-auth-token here
+  })
 );
 
 // Default route
-app.get('/', (req: Request, res: Response) => {
-	res.status(200).json({ message: 'CMHMCS Server is Running!' });
+app.get("/", (req: Request, res: Response) => {
+  res.status(200).json({ message: "CMHMCS Server is Running!" });
 });
 
 // User routes
-app.use('/api/auth', authRoutes);
-app.use('/api/pw', pregnantWomenRoutes);
-app.use('/api/hw', healthWorkerRoutes);
-app.use('/api/ec', contentRoutes);
+app.use("/api/auth", authRoutes);
+app.use("/api/pw", pregnantWomenRoutes);
+app.use("/api/hw", healthWorkerRoutes);
+app.use("/api/hw/appointments/manage-service-types", ServiceTypeRoutes);
+app.use(
+  "/api/hw/appointments/manage-provider-schedules",
+  ManageProviderScheduleRoutes
+);
+app.use(
+  "/api/hw/appointments/manage-appointment-requests",
+  AppointmentRequestsRoutes
+);
+app.use("/api/hw/appointments/manage-appointments", ManageAppointmentsRoutes);
+app.use("/api/ec", contentRoutes);
+// CHAT
+app.use("/api/c", MessagesRoutes);
+
+// CONTENT
+app.use("/api/hw/educational-content", ContentRoutes);
 
 // Serve static files from the uploads directory
-app.use('/uploads', express.static(path.join(__dirname, '..', 'uploads')));
+app.use("/uploads", express.static(path.join(__dirname, "..", "uploads")));
+app.use("/static", express.static(path.join(__dirname, "frontend/public")));
 
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {
-	console.log(`Server is running on port ${PORT}`);
+  console.log(`Server is running on port ${PORT}`);
 });

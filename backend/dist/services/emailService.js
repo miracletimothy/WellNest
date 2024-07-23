@@ -17,10 +17,10 @@ const nodemailer_1 = __importDefault(require("nodemailer"));
 const dotenv_1 = __importDefault(require("dotenv"));
 dotenv_1.default.config();
 const transporter = nodemailer_1.default.createTransport({
-    service: 'Gmail',
+    service: "Gmail",
     auth: {
-        user: 'cmhmcs@gmail.com',
-        pass: 'ydnc qxvn oago fftx',
+        user: process.env.EMAIL_ADDRESS,
+        pass: process.env.EMAIL_PASSWORD,
     },
 });
 // Email templates
@@ -47,29 +47,29 @@ const templates = {
 };
 const sendEmail = (to, subject, html) => __awaiter(void 0, void 0, void 0, function* () {
     const mailOptions = {
-        from: 'cmhmcs@gmail.com',
+        from: "cmhmcs@gmail.com",
         to,
         subject,
         html,
     };
     try {
         const info = yield transporter.sendMail(mailOptions);
-        console.log('Email sent:', info.response);
+        console.log("Email sent:", info.response);
     }
     catch (error) {
-        console.error('Error sending email:', error);
-        throw new Error('Failed to send email');
+        console.error("Error sending email:", error);
+        throw new Error("Failed to send email");
     }
 });
 exports.sendEmail = sendEmail;
 const sendWelcomeEmail = (to, username) => __awaiter(void 0, void 0, void 0, function* () {
     const html = templates.welcome(username);
-    yield (0, exports.sendEmail)(to, 'Welcome to Our App!', html);
+    yield (0, exports.sendEmail)(to, "Welcome to Our App!", html);
 });
 exports.sendWelcomeEmail = sendWelcomeEmail;
 const sendVerificationEmail = (to, username, code) => __awaiter(void 0, void 0, void 0, function* () {
     const html = templates.verification(username, code);
-    yield (0, exports.sendEmail)(to, 'Verify Your Account', html);
+    yield (0, exports.sendEmail)(to, "Verify Your Account", html);
 });
 exports.sendVerificationEmail = sendVerificationEmail;
 //# sourceMappingURL=emailService.js.map

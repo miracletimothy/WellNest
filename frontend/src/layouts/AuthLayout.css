@@ -1,0 +1,37 @@
+.AuthLayout {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: antiquewhite;
+}
+
+.MainContent {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* background-color: aqua; */
+
+  background-image: url("../assets/backgrounds/auth-bg.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.left {
+  width: 500px;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* background-color: aqua; */
+}
+
+.right {
+  margin-right: 150px;
+}
+
+#logo {
+  height: 100px;
+  width: 100px;
+}

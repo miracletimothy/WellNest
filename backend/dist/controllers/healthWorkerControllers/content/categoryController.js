@@ -16,19 +16,19 @@ exports.getCategories = void 0;
 const ContentCategory_1 = __importDefault(require("../../../models/ContentCategory"));
 const getCategories = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const token = req.header('x-auth-token');
+        const token = req.header("x-auth-token");
         if (!token) {
-            return res.status(403).json({ msg: 'Unauthorized' });
+            return res.status(403).json({ msg: "Unauthorized" });
         }
         const categories = yield ContentCategory_1.default.find();
         if (!categories) {
-            return res.status(404).json({ msg: 'categories not found' });
+            return res.status(404).json({ msg: "categories not found" });
         }
         res.json(categories);
     }
     catch (err) {
         console.error(err.message);
-        res.status(500).send('Server Error');
+        res.status(500).send("Server Error");
     }
 });
 exports.getCategories = getCategories;

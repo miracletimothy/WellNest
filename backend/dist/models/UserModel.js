@@ -32,16 +32,16 @@ const UserSchema = new mongoose_1.Schema({
     role: {
         type: String,
         required: true,
-        enum: ['pregnant_woman', 'health_worker'],
+        enum: ["pregnant_woman", "health_worker"],
     },
     isVerified: { type: Boolean, default: false },
     twoFactorSecret: { type: String },
     profilePic: {
         type: String,
-        default: 'https://github.com/miracletimothy/assets/blob/main/user.png?raw=true',
+        default: "/static/images/default-profile.png",
     },
 }, {
     timestamps: true,
 });
-exports.default = mongoose_1.default.model('User', UserSchema);
-//# sourceMappingURL=UserModel.js.map
+exports.default = mongoose_1.default.model("User", UserSchema);
+//# sourceMappingURL=userModel.js.map

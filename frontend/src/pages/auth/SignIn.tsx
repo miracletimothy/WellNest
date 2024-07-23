@@ -1,113 +1,108 @@
-import React, { useState } from 'react';
-import { useAuth } from '../../context/AuthContext';
-import { useHistory, Link } from 'react-router-dom';
-import axiosInstance from '../../utils/axiosInstance';
+import React, { useState } from "react";
+import { useAuth } from "../../context/AuthContext";
+import { useHistory, Link } from "react-router-dom";
+import axiosInstance from "../../utils/axiosInstance";
 
-// Theme
-import '../../styles/Theme.css';
+import {
+  Flex,
+  Box,
+  Heading,
+  FormControl,
+  FormLabel,
+  Input,
+  Button,
+  useToast,
+} from "@chakra-ui/react";
 
 const SignIn: React.FC = () => {
-	const [email, setEmail] = useState('');
-	const [password, setPassword] = useState('');
-	const { login } = useAuth();
-	const [error, setError] = useState('');
-	const history = useHistory();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const { login } = useAuth();
+  const history = useHistory();
+  const toast = useToast();
 
-	const handleSubmit = async (e: React.FormEvent) => {
-		e.preventDefault();
-		try {
-			const res = await axiosInstance.post('/auth/login', { email, password });
-			if (res.data.user.role !== 'health_worker') {
-				throw new Error('Unauthorized access');
-			}
-			localStorage.setItem('token', res.data.token);
-			localStorage.setItem('role', res.data.user.role);
-			console.log('Login successful:', res.data.user);
-			console.log('Token exists, redirecting to main page...');
-			login(res.data.token, res.data.user);
-			history.replace('/');
-		} catch (err) {
-			setError('Login failed. Please check your credentials and try again.');
-			console.error(err);
-		}
-	};
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    try {
+      const res = await axiosInstance.post("/auth/login", { email, password });
+      if (
+        res.data.user.role !== "health_worker" &&
+        res.data.user.role !== "pregnant_woman"
+      ) {
+        throw new Error("Unauthorized access");
+      }
+      localStorage.setItem("token", res.data.token);
+      localStorage.setItem("role", res.data.user.role);
+      console.log("Login successful:", res.data.user);
+      console.log("Token exists, redirecting to main page...");
+      login(res.data.token, res.data.user);
+      history.replace("/");
 
-	return (
-		<div
-			id='medium-form'
-			className='medium-form'>
-			<h1
-				id='heading1'
-				className='heading1'>
-				Sign in
-			</h1>
-			<span>
-				<span>New user? </span>
-				<Link
-					id='link'
-					to='/create-account'>
-					Create an account
-				</Link>
-			</span>
+      toast({
+        title: "Login successful.",
+        description: "You have successfully logged in.",
+        status: "success",
+        duration: 5000,
+        isClosable: true,
+      });
+    } catch (err) {
+      toast({
+        title: "Login failed.",
+        description: "Please check your credentials and try again.",
+        status: "error",
+        duration: 5000,
+        isClosable: true,
+      });
+      console.error(err);
+    }
+  };
 
-			<form
-				id='form'
-				className='form'
-				onSubmit={handleSubmit}>
-				<div
-					id='input-group'
-					className='input-group'>
-					<label
-						id='label'
-						htmlFor='email'>
-						Email address
-					</label>
-					<input
-						id='input'
-						type='email'
-						value={email}
-						onChange={e => setEmail(e.target.value)}
-						required
-					/>
-				</div>
-				<div
-					id='input-group'
-					className='input-group'>
-					<label
-						id='label'
-						htmlFor='password'>
-						Password
-					</label>
-					<input
-						id='input'
-						type='password'
-						value={password}
-						onChange={e => setPassword(e.target.value)}
-						required
-					/>
-				</div>
-				<div
-					id='button-group'
-					className='button-group'>
-					<button id='button'>Continue</button>
-				</div>
-			</form>
-			<span
-				id='message-box'
-				className='message-box'>
-				{error && <p style={{ color: 'red' }}>{error}</p>}
-			</span>
-			<span
-				id='link-group'
-				className='link-group'>
-				<Link
-					id='link'
-					to='/help#signin'>
-					Get help signing in
-				</Link>
-			</span>
-		</div>
-	);
+  return (
+    <Flex width="full" align="center" justifyContent="center">
+      <Box
+        p={8}
+        maxWidth="800px"
+        borderWidth={1}
+        borderRadius={8}
+        boxShadow="lg"
+        backgroundColor="white"
+      >
+        <Box textAlign="center">
+          <Heading>Login</Heading>
+        </Box>
+        <Box my={4} textAlign="left">
+          <form onSubmit={handleSubmit}>
+            <FormControl isRequired>
+              <FormLabel>Email</FormLabel>
+              <Input
+                type="email"
+                placeholder="cmhmcs@gmail.com"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            </FormControl>
+
+            <FormControl mt={6} isRequired>
+              <FormLabel>Password</FormLabel>
+              <Input
+                type="password"
+                placeholder="*******"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+            </FormControl>
+
+            <Button variant="outline" width="full" mt={4} type="submit">
+              Sign In
+            </Button>
+            <FormControl mt={6}>
+              <Link to="/create-account">Create an account?</Link>
+            </FormControl>
+          </form>
+        </Box>
+      </Box>
+    </Flex>
+  );
 };
 
 export default SignIn;

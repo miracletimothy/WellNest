@@ -13,22 +13,22 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getProfile = void 0;
-const UserModel_1 = __importDefault(require("../../models/UserModel"));
+const userModel_1 = __importDefault(require("../../models/userModel"));
 const getProfile = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     var _a, _b;
     try {
-        if (((_a = req.user) === null || _a === void 0 ? void 0 : _a.role) !== 'health_worker') {
-            return res.status(403).json({ msg: 'Unauthorized' });
+        if (((_a = req.user) === null || _a === void 0 ? void 0 : _a.role) !== "health_worker") {
+            return res.status(403).json({ msg: "Unauthorized" });
         }
-        const healthWorkerProfile = yield UserModel_1.default.findOne({ _id: (_b = req.user) === null || _b === void 0 ? void 0 : _b.id });
+        const healthWorkerProfile = yield userModel_1.default.findOne({ _id: (_b = req.user) === null || _b === void 0 ? void 0 : _b.id });
         if (!healthWorkerProfile) {
-            return res.status(404).json({ msg: 'Profile not found' });
+            return res.status(404).json({ msg: "Profile not found" });
         }
         res.json(healthWorkerProfile);
     }
     catch (err) {
         console.error(err.message);
-        res.status(500).send('Server Error');
+        res.status(500).send("Server Error");
     }
 });
 exports.getProfile = getProfile;

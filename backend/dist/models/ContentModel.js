@@ -64,4 +64,4 @@ const contentSchema = new mongoose_1.Schema({
 // hello
 const Content = mongoose_1.default.model('Content', contentSchema);
 exports.default = Content;
-//# sourceMappingURL=ContentModel.js.map
+//# sourceMappingURL=contentModel.js.map
