@@ -33,9 +33,7 @@ import ViewAntenatalRecordsPW from "./pages/PregnantWomen/AntenatalRecords/ViewA
 import DashboardHW from "./pages/HealthWorkers/AnalyticsAndReporting/DashboardHW";
 import ChatHW from "./pages/HealthWorkers/Chat/ChatHW";
 import CreateEducationalContentHW from "./pages/HealthWorkers/EducationalContent/CreateEducationalContentHW";
-import UpdateEducationalContentHW from "./pages/HealthWorkers/EducationalContent/UpdateEducationalContentHW";
-import ViewEducationalContentHW from "./pages/HealthWorkers/EducationalContent/ViewEducationalContentHW";
-import ViewEducationalContentsHW from "./pages/HealthWorkers/EducationalContent/ViewEducationalContentsHW";
+
 import CreateAntenatalRecordHW from "./pages/HealthWorkers/AntenatalRecords/CreateAntenatalRecordHW";
 import ViewAntenatalRecordHW from "./pages/HealthWorkers/AntenatalRecords/ViewAntenatalRecordHW";
 import ViewAntenatalRecordsHW from "./pages/HealthWorkers/AntenatalRecords/ViewAntenatalRecordsHW";

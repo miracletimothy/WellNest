@@ -9,7 +9,6 @@ import {
   Button,
   Select,
   HStack,
-  VStack,
 } from "@chakra-ui/react";
 
 import { useHistory, Link } from "react-router-dom";
@@ -56,7 +55,7 @@ const CreateAccount: React.FC = () => {
         borderWidth={1}
         borderRadius={8}
         boxShadow="lg"
-        backgroundColor='white'
+        backgroundColor="white"
       >
         <Box textAlign="center">
           <Heading>Sign Up</Heading>

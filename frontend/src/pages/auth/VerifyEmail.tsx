@@ -7,9 +7,8 @@ import {
   FormLabel,
   Input,
   Button,
-  useToast,
 } from "@chakra-ui/react";
-import { useParams, useHistory, Link } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import axiosInstance from "../../utils/axiosInstance";
 import "../../styles/Theme.css";
 
