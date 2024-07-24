@@ -38,7 +38,7 @@ const UserSchema = new mongoose_1.Schema({
     twoFactorSecret: { type: String },
     profilePic: {
         type: String,
-        default: "/static/images/default-profile.png",
+        default: "https://github.com/miracletimmothy/assets/blob/main/user.png?raw=true",
     },
 }, {
     timestamps: true,
