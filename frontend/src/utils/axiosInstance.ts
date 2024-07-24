@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const backend_url = "https://well-nest-server.vercel.app/api";
+const backend_url = "http://127.0.0.1:5000/api";
 const axiosInstance = axios.create({
   baseURL: backend_url,
 });
