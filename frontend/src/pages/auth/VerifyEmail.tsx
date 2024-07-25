@@ -13,7 +13,6 @@ import axiosInstance from "../../utils/axiosInstance";
 import "../../styles/Theme.css";
 
 const VerifyEmail: React.FC = () => {
-  const [error, setError] = useState("");
   const { email } = useParams<{ email: string }>();
   const [code, setCode] = useState("");
   const history = useHistory();
@@ -38,8 +37,6 @@ const VerifyEmail: React.FC = () => {
       }
     } catch (err) {
       console.error(err);
-
-      setError("Verification failed. Please try again.");
     }
   };
 

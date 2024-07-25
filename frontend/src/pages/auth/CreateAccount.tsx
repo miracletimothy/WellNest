@@ -15,7 +15,6 @@ import { useHistory, Link } from "react-router-dom";
 import axiosInstance from "../../utils/axiosInstance";
 
 const CreateAccount: React.FC = () => {
-  const [error, setError] = useState("");
   const [email, setEmail] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -43,7 +42,6 @@ const CreateAccount: React.FC = () => {
       }
     } catch (err) {
       console.error(err);
-      setError("Create account failed. Please try again.");
     }
   };
 

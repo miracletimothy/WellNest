@@ -58,6 +58,7 @@ const CreateEducationalContentHW: React.FC = () => {
     setFile(file);
     if (file) {
       setFileType(file.type);
+      console.log(fileType);
     }
   };
 
@@ -82,6 +83,7 @@ const CreateEducationalContentHW: React.FC = () => {
         },
       })
       .then((response) => {
+        console.log(response);
         toast({
           title: "Content uploaded",
           description: "Your content has been successfully uploaded.",

@@ -4,7 +4,6 @@ import {
   Box,
   Heading,
   Text,
-  VStack,
   Link,
   Image,
   SimpleGrid,

@@ -19,10 +19,8 @@ import {
   ModalCloseButton,
   ModalBody,
   ModalFooter,
-  Select,
-  HStack,
-  Spacer,
 } from "@chakra-ui/react";
+
 import axiosInstance from "../../../../../utils/axiosInstance";
 
 interface ScheduleItem {

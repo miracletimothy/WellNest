@@ -1,6 +1,5 @@
 import React from "react";
 import "./AuthLayout.css";
-import ThemeToggler from "../Theme/ThemeToggler";
 import logo from "../assets/logo/icon.png";
 import { Heading, HStack } from "@chakra-ui/react";
 

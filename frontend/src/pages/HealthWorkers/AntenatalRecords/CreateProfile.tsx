@@ -21,6 +21,7 @@ const CreateProfile: React.FC = () => {
         age,
         contact,
       });
+      console.log(response);
       alert("Profile created successfully");
     } catch (error) {
       alert("Error creating profile");

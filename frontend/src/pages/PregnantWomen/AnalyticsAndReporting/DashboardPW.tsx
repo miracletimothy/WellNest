@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, SimpleGrid, Heading, Text, VStack } from "@chakra-ui/react";
+import { Box, SimpleGrid, Text, VStack } from "@chakra-ui/react";
 
 const DashboardPW: React.FC = () => {
   return (

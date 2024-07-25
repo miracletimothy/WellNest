@@ -6,9 +6,7 @@ import {
   Button,
   VStack,
   List,
-  ListItem,
   Text,
-  Divider,
   HStack,
 } from "@chakra-ui/react";
 import axiosInstance from "../../utils/axiosInstance"; // Adjust the path as necessary
