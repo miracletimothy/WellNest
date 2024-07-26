@@ -6,13 +6,11 @@ import path from "path";
 import authRoutes from "./routes/authRoutes";
 import pregnantWomenRoutes from "./routes/pregnantWomenRoutes";
 import healthWorkerRoutes from "./routes/healthWorkerRoutes";
-import contentRoutes from "./routes/contentRoutes";
 import ServiceTypeRoutes from "./routes/AppointmentScheduling/ServiceTypeRoutes";
 import ManageProviderScheduleRoutes from "./routes/AppointmentScheduling/ManageProviderScheduleRoutes";
 import AppointmentRequestsRoutes from "./routes/AppointmentScheduling/AppointmentRequestsRoutes";
 import ManageAppointmentsRoutes from "./routes/AppointmentScheduling/ManageAppointmentsRoutes";
 import MessagesRoutes from "./routes/Chat/MessageRoutes";
-import ContentRoutes from "./routes/Content/ContentRoutes";
 
 const app: Application = express();
 
@@ -48,11 +46,8 @@ app.use(
   AppointmentRequestsRoutes
 );
 app.use("/api/hw/appointments/manage-appointments", ManageAppointmentsRoutes);
-app.use("/api/ec", contentRoutes);
 
 app.use("/api/c", MessagesRoutes);
-
-app.use("/api/hw/educational-content", ContentRoutes);
 
 app.use("/uploads", express.static(path.join(__dirname, "..", "uploads")));
 app.use("/static", express.static(path.join(__dirname, "frontend/public")));
