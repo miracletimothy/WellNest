@@ -1,4 +1,3 @@
-// src/routes/contentRoutes.ts
 import { Router } from "express";
 import { createContent } from "../../controllers/Content/ContentController";
 import { authMiddleware, authorizeRole } from "../../middleware/authMiddleware";

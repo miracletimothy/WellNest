@@ -2,7 +2,7 @@ import mongoose, { Schema, Document } from "mongoose";
 
 interface IServiceType extends Document {
   name: string;
-  duration: number; // in minutes
+  duration: number;
   description: string;
 }
 

@@ -4,7 +4,6 @@ import Message from "../models/ChatModel";
 
 const router = Router();
 
-// Get all chats
 router.get("/", async (req, res) => {
   try {
     const chats = await Chat.find();
@@ -14,7 +13,6 @@ router.get("/", async (req, res) => {
   }
 });
 
-// Get messages for a specific chat
 router.get("/:chatId/messages", async (req, res) => {
   const { chatId } = req.params;
   try {

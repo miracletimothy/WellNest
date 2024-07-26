@@ -5,7 +5,6 @@ import mongoose from "mongoose";
 
 const router = express.Router();
 
-// Create a new profile with empty forms
 router.post("/create", async (req: Request, res: Response) => {
   try {
     const { name, age, contact } = req.body;
@@ -48,7 +47,6 @@ router.post("/create", async (req: Request, res: Response) => {
   }
 });
 
-// Get all profiles
 router.get("/", async (req: Request, res: Response) => {
   try {
     const women = await PregnantWoman.find().populate("forms");

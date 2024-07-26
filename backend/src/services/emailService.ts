@@ -11,7 +11,6 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-// Email templates
 const templates = {
   welcome: (username: string) => `
     <html>
@@ -31,7 +30,6 @@ const templates = {
       </body>
     </html>
   `,
-  // Add more templates as needed
 };
 
 export const sendEmail = async (to: string, subject: string, html: string) => {

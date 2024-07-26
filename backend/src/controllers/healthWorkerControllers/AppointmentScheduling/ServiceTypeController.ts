@@ -1,7 +1,6 @@
 import { Request, Response } from "express";
 import ServiceType from "../../../models/AppointmentScheduling/ServiceTypeModel";
 
-// Get all service types
 export const getAllServiceTypes = async (req: Request, res: Response) => {
   try {
     const serviceTypes = await ServiceType.find();
@@ -11,7 +10,6 @@ export const getAllServiceTypes = async (req: Request, res: Response) => {
   }
 };
 
-// Create a new service type
 export const createServiceType = async (req: Request, res: Response) => {
   const { name, duration, description } = req.body;
 
@@ -24,7 +22,6 @@ export const createServiceType = async (req: Request, res: Response) => {
   }
 };
 
-// Update an existing service type
 export const updateServiceType = async (req: Request, res: Response) => {
   const { id } = req.params;
   const { name, duration, description } = req.body;
@@ -46,7 +43,6 @@ export const updateServiceType = async (req: Request, res: Response) => {
   }
 };
 
-// Delete a service type
 export const deleteServiceType = async (req: Request, res: Response) => {
   const { id } = req.params;
 

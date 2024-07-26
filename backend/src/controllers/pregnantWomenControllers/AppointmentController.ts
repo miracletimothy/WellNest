@@ -1,8 +1,6 @@
-// controllers/appointmentController.ts
 import { Request, Response } from "express";
 import Appointment from "../../models/AppointmentModel";
 
-// Create a new appointment
 export const createAppointment = async (req: Request, res: Response) => {
   const { description, date, time, serviceId } = req.body;
 
@@ -20,7 +18,6 @@ export const createAppointment = async (req: Request, res: Response) => {
   }
 };
 
-// Get all appointments
 export const getAppointments = async (req: Request, res: Response) => {
   try {
     const appointments = await Appointment.find().sort({ date: 1, time: 1 });
@@ -32,7 +29,6 @@ export const getAppointments = async (req: Request, res: Response) => {
   }
 };
 
-// Get a specific appointment by ID
 export const getAppointmentById = async (req: Request, res: Response) => {
   const { id } = req.params;
   try {
@@ -48,7 +44,6 @@ export const getAppointmentById = async (req: Request, res: Response) => {
   }
 };
 
-// Delete an appointment
 export const deleteAppointment = async (req: Request, res: Response) => {
   const { id } = req.params;
   try {

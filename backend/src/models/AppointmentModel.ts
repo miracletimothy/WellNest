@@ -5,7 +5,7 @@ interface Appointment extends Document {
   date: Date;
   approvalStatus: "approved" | "not approved" | "canceled";
   completionStatus: "complete" | "awaiting" | "missed";
-  message?: string; // Optional field
+  message?: string;
 }
 
 const AppointmentSchema: Schema = new Schema({
@@ -21,7 +21,7 @@ const AppointmentSchema: Schema = new Schema({
     enum: ["complete", "awaiting", "missed"],
     default: "awaiting",
   },
-  message: { type: String, default: "" }, // Optional field
+  message: { type: String, default: "" },
 });
 
 export default mongoose.model<Appointment>("Appointment", AppointmentSchema);

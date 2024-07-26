@@ -12,7 +12,6 @@ import { getAllServiceTypes } from "../controllers/healthWorkerControllers/Appoi
 
 const router = express.Router();
 
-// Profile
 router.get(
   "/profile",
   authMiddleware,
@@ -20,7 +19,6 @@ router.get(
   getProfile
 );
 
-// GET All ServiceTypes
 router.get(
   "/appointments/get/service-types",
   authMiddleware,
@@ -28,7 +26,6 @@ router.get(
   getAllServiceTypes
 );
 
-// Appointments
 router.post(
   "/appointments/create",
   authMiddleware,

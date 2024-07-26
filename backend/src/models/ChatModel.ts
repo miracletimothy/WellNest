@@ -1,7 +1,7 @@
 import { Schema, model, Document } from "mongoose";
 
 interface IChat extends Document {
-  participants: string[]; // Array of user IDs
+  participants: string[];
 }
 
 const chatSchema = new Schema<IChat>({

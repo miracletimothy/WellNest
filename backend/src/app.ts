@@ -7,16 +7,11 @@ import authRoutes from "./routes/authRoutes";
 import pregnantWomenRoutes from "./routes/pregnantWomenRoutes";
 import healthWorkerRoutes from "./routes/healthWorkerRoutes";
 import contentRoutes from "./routes/contentRoutes";
-// APPOINTMENT SCHEDULING
 import ServiceTypeRoutes from "./routes/AppointmentScheduling/ServiceTypeRoutes";
 import ManageProviderScheduleRoutes from "./routes/AppointmentScheduling/ManageProviderScheduleRoutes";
 import AppointmentRequestsRoutes from "./routes/AppointmentScheduling/AppointmentRequestsRoutes";
 import ManageAppointmentsRoutes from "./routes/AppointmentScheduling/ManageAppointmentsRoutes";
-
-// CHAT
 import MessagesRoutes from "./routes/Chat/MessageRoutes";
-
-// CONTENT
 import ContentRoutes from "./routes/Content/ContentRoutes";
 
 const app: Application = express();
@@ -29,19 +24,17 @@ app.use(express.json());
 
 app.use(
   cors({
-    origin: "*", // Consider using a specific origin for better security in production
-    credentials: true, // Allow credentials (cookies, authorization headers)
-    methods: ["GET", "POST", "PUT", "DELETE"], // Allow specific methods
-    allowedHeaders: ["Content-Type", "Authorization", "x-auth-token"], // Include x-auth-token here
+    origin: "*",
+    credentials: true,
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    allowedHeaders: ["Content-Type", "Authorization", "x-auth-token"],
   })
 );
 
-// Default route
 app.get("/", (req: Request, res: Response) => {
   res.status(200).json({ message: "CMHMCS Server is Running!" });
 });
 
-// User routes
 app.use("/api/auth", authRoutes);
 app.use("/api/pw", pregnantWomenRoutes);
 app.use("/api/hw", healthWorkerRoutes);
@@ -56,13 +49,11 @@ app.use(
 );
 app.use("/api/hw/appointments/manage-appointments", ManageAppointmentsRoutes);
 app.use("/api/ec", contentRoutes);
-// CHAT
+
 app.use("/api/c", MessagesRoutes);
 
-// CONTENT
 app.use("/api/hw/educational-content", ContentRoutes);
 
-// Serve static files from the uploads directory
 app.use("/uploads", express.static(path.join(__dirname, "..", "uploads")));
 app.use("/static", express.static(path.join(__dirname, "frontend/public")));
 

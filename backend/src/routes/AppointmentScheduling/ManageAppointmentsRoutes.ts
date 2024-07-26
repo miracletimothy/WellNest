@@ -2,7 +2,7 @@ import express from "express";
 import {
   getApprovedAppointments,
   markAsServed,
-  markAsMissed, // Import the markAsMissed function
+  markAsMissed,
 } from "../../controllers/healthWorkerControllers/AppointmentScheduling/ManageAppointmentsController";
 import { authMiddleware, authorizeRole } from "../../middleware/authMiddleware";
 
@@ -22,7 +22,6 @@ router.post(
   markAsServed
 );
 
-// Route to manually trigger marking appointments as missed
 router.post(
   "/miss/:id/miss",
   authMiddleware,

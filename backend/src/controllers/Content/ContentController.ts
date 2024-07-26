@@ -1,4 +1,3 @@
-// src/controllers/ContentController.ts
 import { Request, Response } from "express";
 import Content from "../../models/Content/ContentModel";
 import upload from "../../config/MulterConfig";
@@ -9,7 +8,7 @@ export const createContent = async (req: Request, res: Response) => {
       return res.status(400).json({ error: err.message });
     }
 
-    const { title, description, tags, links, userId, type } = req.body;
+    const { title, description, tags, links, type } = req.body;
     const filePath = req.file ? `/uploads/${req.file.filename}` : null;
 
     try {
@@ -20,8 +19,7 @@ export const createContent = async (req: Request, res: Response) => {
         links,
         file: filePath,
         fileType: req.file ? req.file.mimetype : links.length ? "link" : "",
-        userId, // Ensure userId is passed
-        type, // Ensure type is passed
+        type,
       });
 
       await newContent.save();

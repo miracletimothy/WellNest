@@ -1,13 +1,11 @@
 import { Request, Response } from "express";
 import Appointment from "../../../models/AppointmentModel";
 
-// Get all approved and awaiting appointments, sorted by latest date
 export const getApprovedAppointments = async (
   req: Request,
   res: Response
 ): Promise<void> => {
   try {
-    // Fetch appointments that are approved and awaiting, sorted by date in descending order
     const appointments = await Appointment.find({
       approvalStatus: "approved",
       completionStatus: "awaiting",
@@ -19,7 +17,6 @@ export const getApprovedAppointments = async (
   }
 };
 
-// Mark appointment as served
 export const markAsServed = async (
   req: Request,
   res: Response
@@ -48,12 +45,10 @@ export const markAsServed = async (
   }
 };
 
-// Mark appointments as missed if the time has expired
 export const markAsMissed = async (): Promise<void> => {
   try {
     const now = new Date();
 
-    // Update appointments that are approved, awaiting, and have passed the current time
     const result = await Appointment.updateMany(
       {
         approvalStatus: "approved",
@@ -69,11 +64,10 @@ export const markAsMissed = async (): Promise<void> => {
   }
 };
 
-// Utility function to periodically run markAsMissed
 export const runMarkAsMissedJob = (): void => {
   setInterval(() => {
     markAsMissed().catch((error) => {
       console.error("Error in markAsMissedJob:", error);
     });
-  }, 60000); // Run every minute
+  }, 60000);
 };

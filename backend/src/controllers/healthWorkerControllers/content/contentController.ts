@@ -10,7 +10,7 @@ export const createContent = async (
   req: Request,
   res: Response
 ): Promise<void> => {
-  const { type, title, description, tags, links, userId } = req.body;
+  const { type, title, description, tags, links } = req.body;
   let fileUrl: string | null = null;
   if (req.file) {
     fileUrl = req.file.path; // This assumes you're using a middleware like multer for file handling
@@ -24,7 +24,6 @@ export const createContent = async (
       tags: JSON.parse(tags),
       links: JSON.parse(links),
       file: fileUrl,
-      userId,
     });
 
     const savedContent = await newContent.save();
