@@ -4,12 +4,17 @@
   "description": "",
   "main": "app.ts",
   "scripts": {
-    "start": "nodemon app.ts",
+    "start": "nodemon src/app.ts",
     "build": " rimraf dist && tsc",
     "ts.check": "tsc --project tsconfig.json",
     "add-build": "git add dist",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "pre-commit": [
+    "ts.check",
+    "build",
+    "add-build"
+  ],
   "keywords": [],
   "author": "",
   "license": "ISC",
