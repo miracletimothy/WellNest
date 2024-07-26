@@ -71,10 +71,15 @@ export const login = async (req: Request, res: Response) => {
       },
     };
 
-    jwt.sign(payload, "miracle", { expiresIn: "48h" }, (err, token) => {
-      if (err) throw err;
-      res.json({ token, user: payload.user });
-    });
+    jwt.sign(
+      payload,
+      process.env.JWT_SECRET!,
+      { expiresIn: "48h" },
+      (err, token) => {
+        if (err) throw err;
+        res.json({ token, user: payload.user });
+      }
+    );
   } catch (err) {
     console.error((err as Error).message);
     res.status(500).send("Server error");
