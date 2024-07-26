@@ -16,7 +16,6 @@ const express_1 = __importDefault(require("express"));
 const PregnantWoman_1 = __importDefault(require("../models/PregnantWoman"));
 const FormModel_1 = __importDefault(require("../models/FormModel"));
 const router = express_1.default.Router();
-// Create a new profile with empty forms
 router.post("/create", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { name, age, contact } = req.body;
@@ -55,7 +54,6 @@ router.post("/create", (req, res) => __awaiter(void 0, void 0, void 0, function*
         res.status(500).json({ message: "Error creating profile", error });
     }
 }));
-// Get all profiles
 router.get("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const women = yield PregnantWoman_1.default.find().populate("forms");

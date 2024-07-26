@@ -16,7 +16,6 @@ const express_1 = require("express");
 const ChatModel_1 = __importDefault(require("../models/ChatModel"));
 const ChatModel_2 = __importDefault(require("../models/ChatModel"));
 const router = (0, express_1.Router)();
-// Get all chats
 router.get("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const chats = yield ChatModel_1.default.find();
@@ -26,7 +25,6 @@ router.get("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         res.status(500).json({ message: "Failed to fetch chats" });
     }
 }));
-// Get messages for a specific chat
 router.get("/:chatId/messages", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { chatId } = req.params;
     try {

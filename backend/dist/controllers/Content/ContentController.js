@@ -30,8 +30,7 @@ const createContent = (req, res) => __awaiter(void 0, void 0, void 0, function* 
                 links,
                 file: filePath,
                 fileType: req.file ? req.file.mimetype : links.length ? "link" : "",
-                // Ensure userId is passed
-                type, // Ensure type is passed
+                type,
             });
             yield newContent.save();
             res.status(201).json(newContent);

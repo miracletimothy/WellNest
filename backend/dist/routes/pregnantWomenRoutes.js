@@ -9,11 +9,8 @@ const profileController_1 = require("../controllers/pregnantWomenControllers/pro
 const AppointmentController_1 = require("../controllers/pregnantWomenControllers/AppointmentController");
 const ServiceTypeController_1 = require("../controllers/healthWorkerControllers/AppointmentScheduling/ServiceTypeController");
 const router = express_1.default.Router();
-// Profile
 router.get("/profile", authMiddleware_1.authMiddleware, (0, authMiddleware_1.authorizeRole)(["pregnant_woman"]), profileController_1.getProfile);
-// GET All ServiceTypes
 router.get("/appointments/get/service-types", authMiddleware_1.authMiddleware, (0, authMiddleware_1.authorizeRole)(["pregnant_woman"]), ServiceTypeController_1.getAllServiceTypes);
-// Appointments
 router.post("/appointments/create", authMiddleware_1.authMiddleware, (0, authMiddleware_1.authorizeRole)(["pregnant_woman"]), AppointmentController_1.createAppointment);
 router.get("/appointments/view", authMiddleware_1.authMiddleware, (0, authMiddleware_1.authorizeRole)(["pregnant_woman"]), AppointmentController_1.getAppointments);
 router.get("/appointments/view/:id", authMiddleware_1.authMiddleware, (0, authMiddleware_1.authorizeRole)(["pregnant_woman"]), AppointmentController_1.getAppointmentById);

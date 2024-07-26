@@ -19,29 +19,24 @@ const emailService_1 = require("../services/emailService");
 const verifyCode = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { email, code } = req.body;
     try {
-        // Find the verification record
         const record = yield TwoFactorModel_1.default.findOne({ email, code });
         if (!record) {
             return res.status(400).json({ msg: "Invalid or expired code" });
         }
-        // Create a new user based on the verification record
         const newUser = new userModel_1.default({
             email: record.email,
-            firstName: record.firstName, // Assuming you have firstName in the TwoFactor model
-            lastName: record.lastName, // Assuming you have lastName in the TwoFactor model
+            firstName: record.firstName,
+            lastName: record.lastName,
             password: record.password,
             role: record.role,
             isVerified: true,
         });
         yield newUser.save();
-        // Delete the verification record
         yield TwoFactorModel_1.default.deleteOne({ _id: record._id });
-        // Fetch user to get the first name
         const user = yield userModel_1.default.findOne({ email });
         if (!user) {
             return res.status(404).json({ msg: "User not found after registration" });
         }
-        // Send welcome email
         yield (0, emailService_1.sendWelcomeEmail)(email, user.firstName);
         res.json({ msg: "Email verified and user registered successfully" });
     }

@@ -14,10 +14,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.runMarkAsMissedJob = exports.markAsMissed = exports.markAsServed = exports.getApprovedAppointments = void 0;
 const AppointmentModel_1 = __importDefault(require("../../../models/AppointmentModel"));
-// Get all approved and awaiting appointments, sorted by latest date
 const getApprovedAppointments = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        // Fetch appointments that are approved and awaiting, sorted by date in descending order
         const appointments = yield AppointmentModel_1.default.find({
             approvalStatus: "approved",
             completionStatus: "awaiting",
@@ -29,7 +27,6 @@ const getApprovedAppointments = (req, res) => __awaiter(void 0, void 0, void 0, 
     }
 });
 exports.getApprovedAppointments = getApprovedAppointments;
-// Mark appointment as served
 const markAsServed = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { id } = req.params;
     try {
@@ -49,11 +46,9 @@ const markAsServed = (req, res) => __awaiter(void 0, void 0, void 0, function* (
     }
 });
 exports.markAsServed = markAsServed;
-// Mark appointments as missed if the time has expired
 const markAsMissed = () => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const now = new Date();
-        // Update appointments that are approved, awaiting, and have passed the current time
         const result = yield AppointmentModel_1.default.updateMany({
             approvalStatus: "approved",
             completionStatus: "awaiting",
@@ -66,13 +61,12 @@ const markAsMissed = () => __awaiter(void 0, void 0, void 0, function* () {
     }
 });
 exports.markAsMissed = markAsMissed;
-// Utility function to periodically run markAsMissed
 const runMarkAsMissedJob = () => {
     setInterval(() => {
         (0, exports.markAsMissed)().catch((error) => {
             console.error("Error in markAsMissedJob:", error);
         });
-    }, 60000); // Run every minute
+    }, 60000);
 };
 exports.runMarkAsMissedJob = runMarkAsMissedJob;
 //# sourceMappingURL=ManageAppointmentsController.js.map

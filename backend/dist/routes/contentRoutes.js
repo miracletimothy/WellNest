@@ -11,17 +11,15 @@ const path_1 = __importDefault(require("path"));
 const router = express_1.default.Router();
 const storage = multer_1.default.diskStorage({
     destination: (req, file, cb) => {
-        cb(null, 'uploads/');
+        cb(null, "uploads/");
     },
     filename: (req, file, cb) => {
-        const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1e9);
+        const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);
         cb(null, `${uniqueSuffix}${path_1.default.extname(file.originalname)}`);
     },
 });
 const upload = (0, multer_1.default)({ storage });
-// Route to create content
-router.post('/create', authMiddleware_1.authMiddleware, (0, authMiddleware_1.authorizeRole)(['health_worker']), upload.single('file'), contentController_1.createContent);
-// Route to get content by category and type
-router.get('/', authMiddleware_1.authMiddleware, (0, authMiddleware_1.authorizeRole)(['health_worker']), contentController_1.getContentByCategoryAndType);
+router.post("/create", authMiddleware_1.authMiddleware, (0, authMiddleware_1.authorizeRole)(["health_worker"]), upload.single("file"), contentController_1.createContent);
+router.get("/", authMiddleware_1.authMiddleware, (0, authMiddleware_1.authorizeRole)(["health_worker"]), contentController_1.getContentByCategoryAndType);
 exports.default = router;
 //# sourceMappingURL=contentRoutes.js.map

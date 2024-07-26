@@ -14,7 +14,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.deleteAppointment = exports.getAppointmentById = exports.getAppointments = exports.createAppointment = void 0;
 const AppointmentModel_1 = __importDefault(require("../../models/AppointmentModel"));
-// Create a new appointment
 const createAppointment = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { description, date, time, serviceId } = req.body;
     try {
@@ -32,7 +31,6 @@ const createAppointment = (req, res) => __awaiter(void 0, void 0, void 0, functi
     }
 });
 exports.createAppointment = createAppointment;
-// Get all appointments
 const getAppointments = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const appointments = yield AppointmentModel_1.default.find().sort({ date: 1, time: 1 });
@@ -45,7 +43,6 @@ const getAppointments = (req, res) => __awaiter(void 0, void 0, void 0, function
     }
 });
 exports.getAppointments = getAppointments;
-// Get a specific appointment by ID
 const getAppointmentById = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { id } = req.params;
     try {
@@ -62,7 +59,6 @@ const getAppointmentById = (req, res) => __awaiter(void 0, void 0, void 0, funct
     }
 });
 exports.getAppointmentById = getAppointmentById;
-// Delete an appointment
 const deleteAppointment = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { id } = req.params;
     try {

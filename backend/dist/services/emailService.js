@@ -23,7 +23,6 @@ const transporter = nodemailer_1.default.createTransport({
         pass: process.env.EMAIL_PASSWORD,
     },
 });
-// Email templates
 const templates = {
     welcome: (username) => `
     <html>
@@ -43,7 +42,6 @@ const templates = {
       </body>
     </html>
   `,
-    // Add more templates as needed
 };
 const sendEmail = (to, subject, html) => __awaiter(void 0, void 0, void 0, function* () {
     const mailOptions = {

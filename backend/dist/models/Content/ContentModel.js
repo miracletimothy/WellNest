@@ -23,7 +23,6 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-// src/models/ContentModel.ts
 const mongoose_1 = __importStar(require("mongoose"));
 const ContentSchema = new mongoose_1.Schema({
     title: { type: String, required: true },
@@ -32,7 +31,7 @@ const ContentSchema = new mongoose_1.Schema({
     links: { type: [String], required: true },
     file: { type: String, default: null },
     fileType: { type: String, default: "" },
-    type: { type: String, required: true }, // Added field
+    type: { type: String, required: true },
 });
 const ContentModel = mongoose_1.default.models.Content || mongoose_1.default.model("Content", ContentSchema);
 exports.default = ContentModel;

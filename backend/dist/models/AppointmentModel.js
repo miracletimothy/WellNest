@@ -37,7 +37,7 @@ const AppointmentSchema = new mongoose_1.Schema({
         enum: ["complete", "awaiting", "missed"],
         default: "awaiting",
     },
-    message: { type: String, default: "" }, // Optional field
+    message: { type: String, default: "" },
 });
 exports.default = mongoose_1.default.model("Appointment", AppointmentSchema);
 //# sourceMappingURL=AppointmentModel.js.map

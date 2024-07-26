@@ -14,7 +14,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.deleteServiceType = exports.updateServiceType = exports.createServiceType = exports.getAllServiceTypes = void 0;
 const ServiceTypeModel_1 = __importDefault(require("../../../models/AppointmentScheduling/ServiceTypeModel"));
-// Get all service types
 const getAllServiceTypes = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const serviceTypes = yield ServiceTypeModel_1.default.find();
@@ -25,7 +24,6 @@ const getAllServiceTypes = (req, res) => __awaiter(void 0, void 0, void 0, funct
     }
 });
 exports.getAllServiceTypes = getAllServiceTypes;
-// Create a new service type
 const createServiceType = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { name, duration, description } = req.body;
     try {
@@ -38,7 +36,6 @@ const createServiceType = (req, res) => __awaiter(void 0, void 0, void 0, functi
     }
 });
 exports.createServiceType = createServiceType;
-// Update an existing service type
 const updateServiceType = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { id } = req.params;
     const { name, duration, description } = req.body;
@@ -54,7 +51,6 @@ const updateServiceType = (req, res) => __awaiter(void 0, void 0, void 0, functi
     }
 });
 exports.updateServiceType = updateServiceType;
-// Delete a service type
 const deleteServiceType = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { id } = req.params;
     try {
