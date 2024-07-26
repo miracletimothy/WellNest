@@ -20,7 +20,7 @@ const createContent = (req, res) => __awaiter(void 0, void 0, void 0, function* 
         if (err) {
             return res.status(400).json({ error: err.message });
         }
-        const { title, description, tags, links, userId, type } = req.body;
+        const { title, description, tags, links, type } = req.body;
         const filePath = req.file ? `/uploads/${req.file.filename}` : null;
         try {
             const newContent = new ContentModel_1.default({
@@ -30,7 +30,7 @@ const createContent = (req, res) => __awaiter(void 0, void 0, void 0, function* 
                 links,
                 file: filePath,
                 fileType: req.file ? req.file.mimetype : links.length ? "link" : "",
-                userId, // Ensure userId is passed
+                // Ensure userId is passed
                 type, // Ensure type is passed
             });
             yield newContent.save();

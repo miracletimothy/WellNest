@@ -15,7 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.getContentByCategoryAndType = exports.createContent = void 0;
 const contentModel_1 = __importDefault(require("../../../models/contentModel"));
 const createContent = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { type, title, description, tags, links, userId } = req.body;
+    const { type, title, description, tags, links } = req.body;
     let fileUrl = null;
     if (req.file) {
         fileUrl = req.file.path; // This assumes you're using a middleware like multer for file handling
@@ -28,7 +28,6 @@ const createContent = (req, res) => __awaiter(void 0, void 0, void 0, function* 
             tags: JSON.parse(tags),
             links: JSON.parse(links),
             file: fileUrl,
-            userId,
         });
         const savedContent = yield newContent.save();
         res.status(201).json(savedContent);

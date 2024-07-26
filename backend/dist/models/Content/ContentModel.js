@@ -32,7 +32,6 @@ const ContentSchema = new mongoose_1.Schema({
     links: { type: [String], required: true },
     file: { type: String, default: null },
     fileType: { type: String, default: "" },
-    userId: { type: mongoose_1.Schema.Types.ObjectId, ref: "User", required: true }, // Added field
     type: { type: String, required: true }, // Added field
 });
 const ContentModel = mongoose_1.default.models.Content || mongoose_1.default.model("Content", ContentSchema);

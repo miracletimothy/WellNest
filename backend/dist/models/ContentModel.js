@@ -49,11 +49,6 @@ const contentSchema = new mongoose_1.Schema({
         type: String,
         required: false,
     },
-    userId: {
-        type: mongoose_1.Schema.Types.ObjectId,
-        ref: 'User',
-        required: true,
-    },
     createdAt: {
         type: Date,
         default: Date.now,
@@ -62,6 +57,6 @@ const contentSchema = new mongoose_1.Schema({
     timestamps: true,
 });
 // hello
-const Content = mongoose_1.default.model('Content', contentSchema);
+const Content = mongoose_1.default.model("Content", contentSchema);
 exports.default = Content;
 //# sourceMappingURL=contentModel.js.map
